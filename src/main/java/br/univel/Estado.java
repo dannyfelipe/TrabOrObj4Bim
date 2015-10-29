@@ -41,7 +41,7 @@ public enum Estado {
 	}
 	
 	public Estado valida(Object o) {
-		if (o.toString().equals(AC.nome)) {
+		if (o.toString().equals(PR.nome)) {
 			return Estado.PR;
 		}
 		return null;
