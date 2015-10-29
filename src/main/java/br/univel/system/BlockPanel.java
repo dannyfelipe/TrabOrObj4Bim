@@ -47,7 +47,7 @@ public class BlockPanel extends JPanel {
 	}
 
 	private AlphaComposite alcom = AlphaComposite.getInstance(
-			AlphaComposite.SRC_OVER, 0.3f);
+			AlphaComposite.SRC_OVER, 0.5f);
 
 	@Override
 	protected void paintComponent(Graphics g) {

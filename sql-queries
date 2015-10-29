@@ -1,0 +1,93 @@
+/*
+SQLyog Ultimate v11.11 (64 bit)
+MySQL - 5.6.26 : Database - java_ooii
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`java_ooii` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+
+USE `java_ooii`;
+
+/*Table structure for table `cliente` */
+
+DROP TABLE IF EXISTS `cliente`;
+
+CREATE TABLE `cliente` (
+  `id_c` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `telefone` varchar(18) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `endereco` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cidade` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `estado` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `genero` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_c`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `cliente` */
+
+/*Table structure for table `produto` */
+
+DROP TABLE IF EXISTS `produto`;
+
+CREATE TABLE `produto` (
+  `cod_p` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cod_barra` int(11) NOT NULL,
+  `categoria` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `descricao` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `unidade` int(11) NOT NULL,
+  `custo` decimal(13,2) NOT NULL,
+  `marge_lucro` decimal(13,2) NOT NULL,
+  PRIMARY KEY (`cod_p`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `produto` */
+
+/*Table structure for table `usuario` */
+
+DROP TABLE IF EXISTS `usuario`;
+
+CREATE TABLE `usuario` (
+  `id_u` int(11) NOT NULL AUTO_INCREMENT,
+  `id_c` int(11) NOT NULL,
+  `cliente` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `senha` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_u`),
+  UNIQUE KEY `usuario` (`id_c`),
+  CONSTRAINT `usuario` FOREIGN KEY (`id_c`) REFERENCES `cliente` (`id_c`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `usuario` */
+
+/*Table structure for table `venda` */
+
+DROP TABLE IF EXISTS `venda`;
+
+CREATE TABLE `venda` (
+  `cod_v` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_c` int(11) NOT NULL,
+  `cliente` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `cod_p` int(11) NOT NULL,
+  `produto` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `vtotal` decimal(13,2) NOT NULL,
+  `vpagamento` decimal(13,2) NOT NULL,
+  `troco` decimal(13,2) NOT NULL,
+  `data` date NOT NULL,
+  `hora` time NOT NULL,
+  PRIMARY KEY (`cod_v`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `venda` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
