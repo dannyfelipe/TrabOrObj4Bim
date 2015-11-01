@@ -1,5 +1,12 @@
 package br.univel;
 
+/**
+ * @author Danny Felipe, 01/11/2015 - 18:55:44
+ * 
+ * Enum Estado - Lista com valores pré-definidos dos estados brasileiros
+ * 
+ */
+
 public enum Estado {
 	
 	AC("Acre"),
@@ -30,12 +37,15 @@ public enum Estado {
 	SE("Sergipe"),
 	TO("Tocantins"); //
 	
+	// variável para receber um dos valores
 	private String nome;
-
+	
+	// método para retornar o valor da variável
 	public String getNome() {
 		return nome;
 	}
-
+	
+	// construtor padrão
 	private Estado(String nome) {
 		this.nome = nome;
 	}

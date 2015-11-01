@@ -1,5 +1,14 @@
 package br.univel;
 
+/**
+ * 
+ * @author Danny Felipe, 01/11/2015 - 19:47:01
+ * 
+ * Classe Usuario
+ * Atributos da classe que receberão os dados no formulário de cadastro
+ *
+ */
+
 public class Usuario {
 	
 	private int id;
@@ -7,6 +16,16 @@ public class Usuario {
 	private String username;
 	private String password;
 	
+	/*
+	 * Construtor padrão
+	 */
+	public Usuario() {
+		
+	}
+	
+	/*
+	 * Getters & Setters
+	 */
 	public int getId() {
 		return id;
 	}

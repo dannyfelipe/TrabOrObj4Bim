@@ -1,5 +1,12 @@
 package br.univel;
 
+/**
+ * @author Danny Felipe, 01/11/2015 - 18:55:44
+ * 
+ * Enum Genero - Lista com valores pré-definidos do genero do cliente
+ * 
+ */
+
 public enum Genero {
 	
 	F("Feminino"), //
@@ -8,12 +15,15 @@ public enum Genero {
 	V("Viado"),
 	I("Indeciso do caralho");
 	
+	// variável para receber um dos valores
 	private String nome;
 
+	// método para retornar o valor da variável
 	public String getNome() {
 		return nome;
 	}
-
+	
+	// construtor padrão
 	private Genero(String nome) {
 		this.nome = nome;
 	}
