@@ -31,6 +31,8 @@ import javax.swing.JTable;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,6 +222,24 @@ public class MioloCadastroCliente extends JPanel {
 		add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent evt) {
+				if (evt.getClickCount() == 2) {
+					Cliente c = (Cliente) listCliente.get(table.getSelectedRow());
+					
+					txtFc_id.setText(String.valueOf(c.getId_c()));
+					txtFc_nome.setText(c.getNome());
+					txtFc_telefone.setText(c.getTelefone());
+					txtFc_endereco.setText(c.getEndereco());
+					txtFc_cidade.setText(c.getCidade());
+					cBxc_estado.setSelectedItem(c.getEstado().name());
+					txtFc_email.setText(c.getEmail());
+					cBxc_genero.setSelectedItem(c.getGenero().name());
+					aux = table.getSelectedRow();
+				}
+			}
+		});
 		scrollPane.setViewportView(table);
 
 		JPanel panel_1 = new JPanel();
@@ -255,7 +275,7 @@ public class MioloCadastroCliente extends JPanel {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				btnAction_delete();
 				
 			}
 		});
@@ -281,8 +301,20 @@ public class MioloCadastroCliente extends JPanel {
 		uf();
 		gen();
 	}
-	
-	
+
+	/*
+	 * Método para excluir um cliente na base de dados
+	 */
+	protected void btnAction_delete() {
+		
+		dc.delete(table.getSelectedRow());
+		tableCliente.delete(table.getSelectedRow());
+		
+	}
+
+	/*
+	 * Método para atualizar um cliente na base de dados
+	 */
 	protected void btnAction_Update() {
 		// TODO Auto-generated method stub
 		

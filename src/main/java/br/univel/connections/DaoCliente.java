@@ -45,8 +45,7 @@ public class DaoCliente {
 			ps.setString(7, c.getGenero().name());
 			ps.executeUpdate();
 			ps.close();
-			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome()
-					+ "\n Cadastrado com sucesso.");
+			JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,8 +68,7 @@ public class DaoCliente {
 			ps.setString(7, c.getGenero().name());
 			ps.executeUpdate();
 			ps.close();
-			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome()
-					+ "\n" + "Atualizado com sucesso.");
+			JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -84,8 +82,7 @@ public class DaoCliente {
 			ps = con.prepareStatement("DELETE FROM CLIENTE WHERE ID_C =" + id_c);
 			int res = ps.executeUpdate();
 			ps.close();
-			JOptionPane
-					.showMessageDialog(null, "Cliente excluído com sucesso.");
+			JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -126,12 +123,19 @@ public class DaoCliente {
 			rs = st.executeQuery("SELECT ID_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
 					+ "FROM CLIENTE");
 			while (rs.next()) {
-				lista.add(c = new Cliente(rs.getInt("ID_C"), rs
-						.getString("NOME"), rs.getString("TELEFONE"), rs
-						.getString("ENDERECO"), rs.getString("CIDADE"), Estado
-						.valueOf(Estado.class, rs.getString("ESTADO")), rs
-						.getString("EMAIL"), Genero.valueOf(Genero.class,
-						rs.getString("GENERO"))));
+				lista.add(c = new Cliente(
+						rs.getInt("ID_C"),
+						rs.getString("NOME"),
+						rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"),
+						rs.getString("CIDADE"),
+						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
+						rs.getString("EMAIL"),
+						Genero.valueOf(Genero.class,
+						rs.getString("GENERO")
+						)
+					)
+				);
 			}
 			rs.close();
 			st.close();
