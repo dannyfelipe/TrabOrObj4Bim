@@ -91,7 +91,7 @@ public class DaoCliente {
 	/*
 	 * Método para buscar um cliente na base de dados
 	 */
-	public Cliente buscarUm(int id_c) {
+	public Cliente search(int id_c) {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
