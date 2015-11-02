@@ -1,15 +1,25 @@
 package br.univel.connections;
 
+/**
+ * @author Danny Felipe, 02/11/2015 - 00:53:47
+ * 
+ * Classe DaoCliente
+ * Implementa todas as ações do CRUD para a classe Cliente
+ */
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import br.univel.Cliente;
+import br.univel.Estado;
+import br.univel.Genero;
 
 public class DaoCliente {
 
@@ -66,6 +76,9 @@ public class DaoCliente {
 		}
 	}
 
+	/*
+	 * Método para excluir um cliente da base de dados
+	 */
 	public void delete(int id_c) {
 		try {
 			ps = con.prepareStatement("DELETE FROM CLIENTE WHERE ID_C =" + id_c);
@@ -76,6 +89,31 @@ public class DaoCliente {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/*
+	 * Método para buscar um cliente na base de dados
+	 */
+	public Cliente buscarUm(int id_c) {
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
+					+ "FROM CLIENTE WHERE ID_C = " + id_c);
+			rs.next();
+			if (rs.getString("NOME") != null) {
+				c = new Cliente(rs.getString("NOME"), rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"), rs.getString("CIDADE"),
+						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
+						rs.getString("EMAIL"), Genero.valueOf(Genero.class,
+								rs.getString("GENERO")));
+			}
+			rs.close();
+			st.close();
+			return c;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
