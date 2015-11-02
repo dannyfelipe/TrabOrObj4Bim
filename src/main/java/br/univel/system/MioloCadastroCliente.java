@@ -338,7 +338,9 @@ public class MioloCadastroCliente extends JPanel {
 		
 	}
 
-
+	/*
+	 * Inicia um thread para listar todos os clientes da base de dados
+	 */
 	private void listarClientes() {
 		// TODO Auto-generated method stub
 		

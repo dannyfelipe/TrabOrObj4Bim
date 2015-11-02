@@ -61,7 +61,8 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mntmCliente = new JMenuItem("Cliente");
 		mntmCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				abrirTela();
+				// invoca o método
+				carregarTelaCliente();
 			}
 
 		});
@@ -75,6 +76,12 @@ public class TelaPrincipal extends JFrame {
 		});
 		
 		JMenuItem mntmProduto = new JMenuItem("Produto");
+		mntmProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// invoca o método
+				carregarTelaProduto();
+			}
+		});
 		mnCadastros.add(mntmProduto);
 		mnCadastros.add(mntmBloquear);
 		
@@ -104,6 +111,38 @@ public class TelaPrincipal extends JFrame {
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
+	}
+
+	protected void carregarTelaProduto() {
+		// TODO Auto-generated method stub
+		
+		TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaCadastroProduto);
+			}
+		};
+		telaCadastroProduto.setCloseAction(action);
+
+		tabbedPane.addTab("Cadastro de Produto", telaCadastroProduto);
+		
+	}
+
+	protected void carregarTelaCliente() {
+		// TODO Auto-generated method stub
+		
+		TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaCadastroCliente);
+			}
+		};
+		telaCadastroCliente.setCloseAction(action);
+
+		tabbedPane.addTab("Cadastro de Cliente", telaCadastroCliente);
+		
 	}
 
 	protected void block() {
@@ -139,19 +178,6 @@ public class TelaPrincipal extends JFrame {
 		setGlassPane(glass);
 
 		glass.setVisible(true);
-	}
-
-	private void abrirTela() {
-		TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
-		ActionListener action = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				tabbedPane.remove(telaCadastroCliente);
-			}
-		};
-		telaCadastroCliente.setCloseAction(action);
-
-		tabbedPane.addTab("Tela ", telaCadastroCliente);
 	}
 
 }
