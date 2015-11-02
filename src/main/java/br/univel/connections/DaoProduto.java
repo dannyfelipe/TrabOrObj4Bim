@@ -1,5 +1,13 @@
 package br.univel.connections;
 
+/**
+ * 
+ * @author Danny Felipe, 02/11/2015 - 03:23:51
+ * 
+ * Classe DaoProduto
+ * Implementa todas as ações do CRUD para a classe Produto
+ */
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,14 +19,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import br.univel.Produto;
-
-/**
- * 
- * @author Danny Felipe, 02/11/2015 - 03:23:51
- * 
- * Classe DaoProduto
- * Implementa todas as ações do CRUD para a classe Produto
- */
 
 public class DaoProduto {
 
@@ -32,15 +32,15 @@ public class DaoProduto {
 	/*
 	 * Método para inserir um novo produto na base de dados
 	 */
-	public void insert(Produto pd) {
+	public void insert(Produto p) {
 		try {
 			ps = con.prepareStatement("INSERT INTO PRODUTO (BARCODE, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MLUCRO) VALUES (?, ?, ?, ?, ?, ?)");
-			ps.setInt(1, pd.getBarcode());
-			ps.setString(2, pd.getCategoria());
-			ps.setString(3, pd.getDescricao());
-			ps.setString(4, pd.getUnidade());
-			ps.setBigDecimal(5, pd.getCusto());
-			ps.setBigDecimal(6, pd.getMlucro());
+			ps.setInt(1, p.getBarcode());
+			ps.setString(2, p.getCategoria());
+			ps.setString(3, p.getDescricao());
+			ps.setInt(4, p.getUnidade());
+			ps.setBigDecimal(5, p.getCusto());
+			ps.setBigDecimal(6, p.getMlucro());
 			ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso.");
@@ -59,7 +59,7 @@ public class DaoProduto {
 			ps.setInt(1, p.getBarcode());
 			ps.setString(2, p.getCategoria());
 			ps.setString(3, p.getDescricao());
-			ps.setString(4, p.getUnidade());
+			ps.setInt(4, p.getUnidade());
 			ps.setBigDecimal(5, p.getCusto());
 			ps.setBigDecimal(6, p.getMlucro());
 			ps.executeUpdate();
@@ -95,9 +95,13 @@ public class DaoProduto {
 					+ "FROM PRODUTO WHERE COD_P = " + id_p);
 			rs.next();
 			if (rs.getString("NOME") != null) {
-				p = new Produto(id_p, rs.getInt("BARCODE"),
-						rs.getString("CATEGORIA"), rs.getString("DESCRICAO"),
-						rs.getString("UNIDADE"), rs.getBigDecimal("CUSTO"),
+				p = new Produto(
+						id_p,
+						rs.getInt("BARCODE"),
+						rs.getString("CATEGORIA"),
+						rs.getString("DESCRICAO"),
+						rs.getInt("UNIDADE"),
+						rs.getBigDecimal("CUSTO"),
 						rs.getBigDecimal("MLUCRO"));
 			}
 			rs.close();
@@ -119,11 +123,16 @@ public class DaoProduto {
 			rs = st.executeQuery("SELECT ID_P, BARCODE, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MLUCRO "
 					+ "FROM PRODUTO");
 			while (rs.next()) {
-				lista.add(p = new Produto(rs.getInt("ID_P"), rs
-						.getInt("BARCODE"), rs.getString("CATEGORIA"), rs
-						.getString("DESCRICAO"), rs.getString("UNIDADE"), rs
-						.getBigDecimal("CUSTO"), rs
-						.getBigDecimal("MLUCRO")));
+				lista.add(p = new Produto(
+						rs.getInt("ID_P"),
+						rs.getInt("BARCODE"),
+						rs.getString("CATEGORIA"),
+						rs.getString("DESCRICAO"),
+						rs.getInt("UNIDADE"),
+						rs.getBigDecimal("CUSTO"),
+						rs.getBigDecimal("MLUCRO")
+						)
+				);
 			}
 			rs.close();
 			st.close();

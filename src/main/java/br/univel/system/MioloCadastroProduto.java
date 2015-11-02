@@ -213,7 +213,7 @@ public class MioloCadastroProduto extends JPanel {
 					txtFp_barcode.setText(String.valueOf(p.getBarcode()));
 					txtFp_categoria.setText(p.getCategoria());
 					txtFp_descricao.setText(p.getDescricao());
-					txtFp_unidade.setText(p.getUnidade());
+					txtFp_unidade.setText(String.valueOf(p.getUnidade()));
 					txtFp_custo.setText(String.valueOf(p.getCusto()));
 					txtFp_mlucro.setText(String.valueOf(p.getMlucro()));
 
@@ -301,7 +301,7 @@ public class MioloCadastroProduto extends JPanel {
 					Integer.parseInt(txtFp_id.getText()),
 					Integer.parseInt(txtFp_barcode.getText()),
 					txtFp_categoria.getText(), txtFp_descricao.getText(),
-					txtFp_unidade.getText(),
+					Integer.parseInt(txtFp_unidade.getText()),
 					BigDecimal.valueOf(Double.parseDouble(txtFp_custo.getText())),
 					BigDecimal.valueOf(Double.parseDouble(txtFp_mlucro.getText())));
 			dp.update(produto);
@@ -343,11 +343,11 @@ public class MioloCadastroProduto extends JPanel {
 				Integer.parseInt(txtFp_barcode.getText()), 
 				txtFp_categoria.getText(),
 				txtFp_descricao.getText(),
-				txtFp_unidade.getText(),
+				Integer.parseInt(txtFp_unidade.getText()),
 				BigDecimal.valueOf(Double.parseDouble(txtFp_custo.getText())),
 				BigDecimal.valueOf(Double.parseDouble(txtFp_mlucro.getText()))
 				);
-		dp.update(produto);
+		dp.insert(produto);
 		tableProduto.addList(produto);
 		limpar();
 

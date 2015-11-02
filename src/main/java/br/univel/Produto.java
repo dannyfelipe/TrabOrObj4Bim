@@ -15,7 +15,7 @@ public class Produto {
 	private int barcode;
 	private String categoria;
 	private String descricao;
-	private String unidade;
+	private int unidade;
 	private BigDecimal custo;
 	private BigDecimal mlucro;
 
@@ -30,7 +30,7 @@ public class Produto {
 	 * construtores da classe
 	 */
 	public Produto(int id_p, int barcode, String categoria, String descricao,
-			String unidade, BigDecimal custo, BigDecimal margenLucro) {
+			int unidade, BigDecimal custo, BigDecimal mlucro) {
 		this.id_p = id_p;
 		this.barcode = barcode;
 		this.categoria = categoria;
@@ -44,7 +44,7 @@ public class Produto {
 	 * construtores da classe
 	 */
 	public Produto(int barcode, String categoria, String descricao,
-			String unidade, BigDecimal custo, BigDecimal mlucro) {
+			int unidade, BigDecimal custo, BigDecimal mlucro) {
 		this.barcode = barcode;
 		this.categoria = categoria;
 		this.descricao = descricao;
@@ -82,10 +82,10 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public String getUnidade() {
+	public int getUnidade() {
 		return unidade;
 	}
-	public void setUnidade(String unidade) {
+	public void setUnidade(int unidade) {
 		this.unidade = unidade;
 	}
 
