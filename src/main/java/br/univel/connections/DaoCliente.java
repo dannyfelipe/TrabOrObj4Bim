@@ -115,5 +115,32 @@ public class DaoCliente {
 		}
 		return null;
 	}
+	
+	/*
+	 * Método para listar todos os clientes da base de dados
+	 */
+	public List<Cliente> listar() {
+		lista = new ArrayList<Cliente>();
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT ID_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
+					+ "FROM CLIENTE");
+			while (rs.next()) {
+				lista.add(c = new Cliente(rs.getInt("ID_C"), rs.getString("NOME"), rs
+						.getString("TELEFONE"), rs.getString("ENDERECO"), rs
+						.getString("CIDADE"), Estado.valueOf(Estado.class,
+						rs.getString("ESTADO")), rs.getString("EMAIL"), Genero
+						.valueOf(Genero.class, rs.getString("GENERO"))));
+			}
+			rs.close();
+			st.close();
+			if (lista != null)
+				return lista;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
