@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import br.univel.Cliente;
 
 public class DaoCliente {
-	
+
 	private PreparedStatement ps = null;
 	private Statement st = null;
 	private ResultSet rs = null;
@@ -23,7 +23,7 @@ public class DaoCliente {
 	/*
 	 * Método para inserir um novo cliente na base de dados
 	 */
-	public void inserir(Cliente c) {
+	public void insert(Cliente c) {
 		try {
 			ps = con.prepareStatement("INSERT INTO CLIENTE (NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			ps.setString(1, c.getNome());
@@ -41,15 +41,15 @@ public class DaoCliente {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/*
 	 * Método para atualizar os dados do cliente na base de dados
 	 */
-	public void atualizar(Cliente c) {
+	public void update(Cliente c) {
 		try {
-			ps = con.prepareStatement("UPDATE CLIENTE SET NOME = ?," +
-									  " TELEFONE = ?, ENDERECO = ?, CIDADE = ?, ESTADO = ?," +
-									  " EMAIL = ?, GENERO = ? WHERE ID_C = " + c.getId_c());
+			ps = con.prepareStatement("UPDATE CLIENTE SET NOME = ?,"
+					+ " TELEFONE = ?, ENDERECO = ?, CIDADE = ?, ESTADO = ?,"
+					+ " EMAIL = ?, GENERO = ? WHERE ID_C = " + c.getId_c());
 			ps.setString(1, c.getNome());
 			ps.setString(2, c.getTelefone());
 			ps.setString(3, c.getEndereco());
@@ -59,8 +59,20 @@ public class DaoCliente {
 			ps.setString(7, c.getGenero().name());
 			ps.executeUpdate();
 			ps.close();
-			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome() +
-											"\n" + "Atualizado com sucesso.");
+			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome()
+					+ "\n" + "Atualizado com sucesso.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void delete(int id_c) {
+		try {
+			ps = con.prepareStatement("DELETE FROM CLIENTE WHERE ID_C =" + id_c);
+			int res = ps.executeUpdate();
+			ps.close();
+			JOptionPane
+					.showMessageDialog(null, "Cliente excluído com sucesso.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
