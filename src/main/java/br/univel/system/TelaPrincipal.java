@@ -92,6 +92,12 @@ public class TelaPrincipal extends JFrame {
 		mnSistema.add(mnUsurio);
 		
 		JMenuItem mntmCadastro = new JMenuItem("Cadastro");
+		mntmCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// invoca o método
+				carregarTelaUsuario();
+			}
+		});
 		mnUsurio.add(mntmCadastro);
 		
 		JMenuItem mntmBloquear_1 = new JMenuItem("Bloquear");
@@ -111,6 +117,22 @@ public class TelaPrincipal extends JFrame {
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
+	}
+
+	protected void carregarTelaUsuario() {
+		// TODO Auto-generated method stub
+		
+		TelaCadastroUsuario telaCadastroUsuario = new TelaCadastroUsuario();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaCadastroUsuario);
+			}
+		};
+		telaCadastroUsuario.setCloseAction(action);
+
+		tabbedPane.addTab("Cadastro de Usuário", telaCadastroUsuario);
+		
 	}
 
 	protected void carregarTelaProduto() {

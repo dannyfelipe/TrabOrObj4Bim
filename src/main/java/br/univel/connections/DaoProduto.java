@@ -145,7 +145,7 @@ public class DaoProduto {
 	}
 	
 	/*
-	 *  Método para retornar o tipo de coneção
+	 *  Método para retornar o tipo de conexão
 	 */
 	public Connection getCon() {
 		return con;

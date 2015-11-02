@@ -62,7 +62,7 @@ public class ClienteTable extends AbstractTableModel {
 	public String getColumnName(int col) {
 		switch (col) {
 		case 0:
-			return "ID";
+			return "CÓD.";
 		case 1:
 			return "NOME";
 		case 2:
@@ -101,16 +101,16 @@ public class ClienteTable extends AbstractTableModel {
 	/*
 	 * Atualiza um cliente na lista e atualiza a tabela
 	 */
-	public void updateList(int indice, Cliente c){
-		lista.set(indice, c);
+	public void updateList(int index, Cliente c){
+		lista.set(index, c);
 		this.fireTableStructureChanged();
 	}
 	
 	/*
 	 * Deleta um cliente na lista e atualiza a tabela
 	 */
-	public void delete(int indice){
-		lista.remove(indice);
+	public void delete(int index){
+		lista.remove(index);
 		this.fireTableStructureChanged();
 	}
 

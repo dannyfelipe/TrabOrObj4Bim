@@ -60,7 +60,7 @@ public class ProdutoTable extends AbstractTableModel {
 	public String getColumnName(int col) {
 		switch (col) {
 		case 0:
-			return "CÓDIGO";
+			return "CÓD.";
 		case 1:
 			return "CÓD_BARRA";
 		case 2:
@@ -97,16 +97,16 @@ public class ProdutoTable extends AbstractTableModel {
 	/*
 	 * Atualiza um produto na lista e atualiza a tabela
 	 */
-	public void updateList(int indice, Produto c) {
-		lista.set(indice, c);
+	public void updateList(int index, Produto c) {
+		lista.set(index, c);
 		this.fireTableStructureChanged();
 	}
 	
 	/*
 	 * Deleta um produto na lista e atualiza a tabela
 	 */
-	public void delete(int indice) {
-		lista.remove(indice);
+	public void delete(int index) {
+		lista.remove(index);
 		this.fireTableStructureChanged();
 	}
 

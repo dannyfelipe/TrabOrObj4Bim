@@ -149,7 +149,7 @@ public class DaoCliente {
 	}
 
 	/*
-	 *  Método para retornar o tipo de coneção
+	 *  Método para retornar o tipo de conexão
 	 */
 	public Connection getCon() {
 		return con;
