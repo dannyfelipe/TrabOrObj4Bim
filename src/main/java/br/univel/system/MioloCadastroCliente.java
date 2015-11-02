@@ -1,5 +1,11 @@
 package br.univel.system;
 
+/**
+ * @author Danny Felipe, 02/11/2015 - 01:04:23
+ * 
+ * Formulário de cadastro de cliente
+ */
+
 import javax.swing.JPanel;
 
 import java.awt.GridBagLayout;
@@ -13,8 +19,19 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+import br.univel.Cliente;
+import br.univel.ClienteTable;
 import br.univel.Estado;
 import br.univel.Genero;
+import br.univel.connections.DaoCliente;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MioloCadastroCliente extends JPanel {
 
@@ -26,6 +43,12 @@ public class MioloCadastroCliente extends JPanel {
 	private JTextField txtFc_email;
 	private JComboBox cBxc_estado;
 	private JComboBox cBxc_genero;
+	private JTable table;
+	
+	private DaoCliente dc = new DaoCliente();
+	private ClienteTable tableCliente;
+	private List<Cliente> listCliente = new ArrayList<>();
+	
 
 	/**
 	 * Create the panel.
@@ -33,11 +56,11 @@ public class MioloCadastroCliente extends JPanel {
 	public MioloCadastroCliente() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JPanel panel_2 = new JPanel();
@@ -184,6 +207,18 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_cBxc_genero.gridx = 1;
 		gbc_cBxc_genero.gridy = 8;
 		add(cBxc_genero, gbc_cBxc_genero);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 9;
+		add(scrollPane, gbc_scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
@@ -191,37 +226,111 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.VERTICAL;
 		gbc_panel_1.gridx = 1;
-		gbc_panel_1.gridy = 10;
+		gbc_panel_1.gridy = 11;
 		add(panel_1, gbc_panel_1);
 
 		JButton btnNewButton = new JButton("Salvar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				btnAction_Add();
+				
+			}
+		});
 		panel_1.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Alterar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		panel_1.add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("Excluir");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
 		panel_1.add(btnNewButton_2);
 
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.anchor = GridBagConstraints.EAST;
 		gbc_panel.gridwidth = 2;
-		gbc_panel.fill = GridBagConstraints.VERTICAL;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 11;
+		gbc_panel.gridy = 12;
 		add(panel, gbc_panel);
 
 		JLabel lblMensagem = new JLabel("Mensagem:");
 		panel.add(lblMensagem);
 		
+		// inicia a conexão com o banco de dados
+		dc.getCon();
+
+		// invoca o método para listar todos os clientes na tabela
+		listarClientes();
+		
 		uf();
+		gen();
 	}
 	
 	
+	private void listarClientes() {
+		// TODO Auto-generated method stub
+		
+		new Thread(new Runnable() {			
+			@Override
+			public void run() {
+				tableCliente = new ClienteTable();
+				listCliente = tableCliente.listar();
+				table.setModel(tableCliente);		
+			}
+		}).start();
+		
+	}
+
+
+	protected void btnAction_Add() {
+		// TODO Auto-generated method stub
+		
+		Cliente cliente = new Cliente(
+				txtFc_nome.getText(),
+				txtFc_telefone.getText(), 
+				txtFc_endereco.getText(),
+				txtFc_cidade.getText(),
+				Estado.valueOf(String.valueOf(cBxc_estado.getSelectedItem())),
+				txtFc_email.getText(),
+				Genero.valueOf(String.valueOf(cBxc_genero.getSelectedItem())));
+		dc.insert(cliente);
+		tableCliente.addList(cliente);
+		limpar();
+		
+	}
+
+
+	private void limpar() {
+		// TODO Auto-generated method stub
+		
+		txtFc_id.setText("");
+		txtFc_nome.setText("");
+		txtFc_telefone.setText("");
+		txtFc_endereco.setText("");
+		txtFc_cidade.setText("");
+		cBxc_estado.setSelectedIndex(0);
+		txtFc_email.setText("");
+		cBxc_genero.setSelectedIndex(0);
+		
+	}
+
+
 	private void uf() {
 		
-		for (Estado  o : Estado.values()) {
+		for (Estado o : Estado.values()) {
 			//System.out.println(o.name());
 			cBxc_estado.addItem(o.name());
 		}
