@@ -115,7 +115,7 @@ public class DaoCliente {
 		}
 		return null;
 	}
-	
+
 	/*
 	 * Método para listar todos os clientes da base de dados
 	 */
@@ -126,11 +126,12 @@ public class DaoCliente {
 			rs = st.executeQuery("SELECT ID_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
 					+ "FROM CLIENTE");
 			while (rs.next()) {
-				lista.add(c = new Cliente(rs.getInt("ID_C"), rs.getString("NOME"), rs
-						.getString("TELEFONE"), rs.getString("ENDERECO"), rs
-						.getString("CIDADE"), Estado.valueOf(Estado.class,
-						rs.getString("ESTADO")), rs.getString("EMAIL"), Genero
-						.valueOf(Genero.class, rs.getString("GENERO"))));
+				lista.add(c = new Cliente(rs.getInt("ID_C"), rs
+						.getString("NOME"), rs.getString("TELEFONE"), rs
+						.getString("ENDERECO"), rs.getString("CIDADE"), Estado
+						.valueOf(Estado.class, rs.getString("ESTADO")), rs
+						.getString("EMAIL"), Genero.valueOf(Genero.class,
+						rs.getString("GENERO"))));
 			}
 			rs.close();
 			st.close();
@@ -141,6 +142,13 @@ public class DaoCliente {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	/*
+	 *  Método para retornar o tipo de coneção
+	 */
+	public Connection getCon() {
+		return con;
 	}
 
 }
