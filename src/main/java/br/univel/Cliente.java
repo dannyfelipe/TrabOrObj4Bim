@@ -13,6 +13,7 @@ public class Cliente {
 
 	private int id_c;
 	private String nome;
+	private String telefone;
 	private String endereco;
 	private String cidade;
 	private Estado estado;
@@ -29,10 +30,11 @@ public class Cliente {
 	/*
 	 *  construtores da classe
 	 */
-	public Cliente(int id_c, String nome, String endereco, String cidade,
+	public Cliente(int id_c, String nome, String telefone, String endereco, String cidade,
 			Estado estado, String email, Genero genero) {
 		this.id_c = id_c;
 		this.nome = nome;
+		this.telefone = telefone;
 		this.endereco = endereco;
 		this.cidade = cidade;
 		this.estado = estado;
@@ -43,9 +45,10 @@ public class Cliente {
 	/*
 	 *  construtores da classe
 	 */
-	public Cliente(String nome, String endereco, String cidade, Estado estado,
+	public Cliente(String nome, String telefone, String endereco, String cidade, Estado estado,
 			String email, Genero genero) {
 		this.nome = nome;
+		this.telefone = telefone;
 		this.endereco = endereco;
 		this.cidade = cidade;
 		this.estado = estado;
@@ -69,6 +72,13 @@ public class Cliente {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getEndereco() {
