@@ -340,7 +340,7 @@ public class MioloCadastroProduto extends JPanel {
 		// TODO Auto-generated method stub
 
 		Produto produto = new Produto(
-				Integer.parseInt(txtFp_barcode.getText()), 
+				Integer.parseInt(txtFp_barcode.getText()),
 				txtFp_categoria.getText(),
 				txtFp_descricao.getText(),
 				Integer.parseInt(txtFp_unidade.getText()),

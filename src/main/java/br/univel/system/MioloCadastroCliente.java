@@ -236,6 +236,7 @@ public class MioloCadastroCliente extends JPanel {
 					cBxc_estado.setSelectedItem(c.getEstado().name());
 					txtFc_email.setText(c.getEmail());
 					cBxc_genero.setSelectedItem(c.getGenero().name());
+					
 					aux = table.getSelectedRow();
 				}
 			}

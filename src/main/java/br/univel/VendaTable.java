@@ -3,8 +3,8 @@ package br.univel;
 /**
  * @author Danny Felipe, 02/11/2015 - 13:35:15
  * 
- * Table model cliente
- * Contém todas as informações para exibição dos dados do cliente
+ * Table model venda
+ * Contém todas as informações para exibição dos dados da venda
  * no formulário de cadastro
  */
 
@@ -13,16 +13,16 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import br.univel.connections.DaoCliente;
+import br.univel.connections.DaoVenda;
 
-public class ClienteTable extends AbstractTableModel {
+public class VendaTable extends AbstractTableModel {
 
-	List<Cliente> lista = new ArrayList<>();
+	List<Venda> lista = new ArrayList<>();
 
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 8;
+		return 10;
 	}
 
 	@Override
@@ -35,24 +35,28 @@ public class ClienteTable extends AbstractTableModel {
 	public Object getValueAt(int row, int col) {
 		// TODO Auto-generated method stub
 
-		Cliente o = lista.get(row);
+		Venda v = lista.get(row);
 		switch (col) {
 		case 0:
-			return o.getId_c();
+			return v.getId_v();
 		case 1:
-			return o.getNome();
+			return v.getCliente_id();
 		case 2:
-			return o.getTelefone();
+			return v.getCliente();
 		case 3:
-			return o.getEndereco();
+			return v.getProduto_id();
 		case 4:
-			return o.getCidade();
+			return v.getProduto();
 		case 5:
-			return o.getEstado().getNome();
+			return v.getVtotal();
 		case 6:
-			return o.getEmail();
+			return v.getVpagamento();
 		case 7:
-			return o.getGenero();
+			return v.getTroco();
+		case 8:
+			return v.getData();
+		case 9:
+			return v.getHora();
 		default:
 			return "";
 		}
@@ -64,19 +68,23 @@ public class ClienteTable extends AbstractTableModel {
 		case 0:
 			return "CÓD.";
 		case 1:
-			return "NOME";
+			return "CÓD. CLIENTE";
 		case 2:
-			return "TELEFONE";
+			return "CLIENTE";
 		case 3:
-			return "ENDEREÇO";
+			return "CÓD. PRODUTO";
 		case 4:
-			return "CIDADE";
+			return "PRODUTO";
 		case 5:
-			return "ESTADO";
+			return "VALOR TOTAL";
 		case 6:
-			return "E-MAIL";
+			return "VALOR PAGAMENTO";
 		case 7:
-			return "GÊNERO";
+			return "TROCO";
+		case 8:
+			return "DATA";
+		case 9:
+			return "HORA";
 		default:
 			return "";
 		}
@@ -85,29 +93,29 @@ public class ClienteTable extends AbstractTableModel {
 	/*
 	 * Lista todos os clientes através do método Listar da classe DaoCliente
 	 */
-	public List<Cliente> listar(){
-		DaoCliente c = new DaoCliente();
-		return lista = c.listar();
+	public List<Venda> listar(){
+		DaoVenda v = new DaoVenda();
+		return lista = v.listar();
 	}
 	
 	/*
-	 * Adiciona um cliente na lista e atualiza a tabela
+	 * Adiciona uma venda na lista e atualiza a tabela
 	 */
-	public void addList(Cliente c){
-		this.lista.add(c);
+	public void addList(Venda v){
+		this.lista.add(v);
 		this.fireTableStructureChanged();
 	}
 	
 	/*
-	 * Atualiza um cliente na lista e atualiza a tabela
+	 * Atualiza uma venda na lista e atualiza a tabela
 	 */
-	public void updateList(int index, Cliente c){
-		lista.set(index, c);
+	public void updateList(int index, Venda v){
+		lista.set(index, v);
 		this.fireTableStructureChanged();
 	}
 	
 	/*
-	 * Deleta um cliente na lista e atualiza a tabela
+	 * Deleta uma venda na lista e atualiza a tabela
 	 */
 	public void delete(int index){
 		lista.remove(index);

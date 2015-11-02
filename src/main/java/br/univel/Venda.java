@@ -15,14 +15,16 @@ public class Venda {
 
 	private int id_v;
 	private int cliente_id;
-	private int produto_id;
 	private String cliente;
+	private int produto_id;
 	private String produto;
-	private BigDecimal valor_compra;
-	private BigDecimal valor_pago;
+	private BigDecimal vtotal;
+	private BigDecimal vpagamento;
 	private BigDecimal troco;
-	private Date data;
-	private Time hora;
+	//private Date data;
+	//private Time hora;
+	private String data;
+	private String hora;
 
 	/*
 	 * Construtor padrão
@@ -34,15 +36,16 @@ public class Venda {
 	/*
 	 * Construtores da classe
 	 */
-	public Venda(int id_v, int cliente_id, int produto_id, String cliente,
-			String produto, BigDecimal valor_compra, BigDecimal valor_pago,
-			BigDecimal troco, Date data, Time hora) {
+	public Venda(int id_v, int cliente_id, String cliente, int produto_id,
+			String produto, BigDecimal vtotal, BigDecimal vpagamento,
+			BigDecimal troco, String data, String hora) {
 		this.id_v = id_v;
 		this.cliente_id = cliente_id;
+		this.produto_id = produto_id;
 		this.cliente = cliente;
 		this.produto = produto;
-		this.valor_compra = valor_compra;
-		this.valor_pago = valor_pago;
+		this.vtotal = vtotal;
+		this.vpagamento = vpagamento;
 		this.troco = troco;
 		this.data = data;
 		this.hora = hora;
@@ -51,14 +54,15 @@ public class Venda {
 	/*
 	 * Construtores da classe
 	 */
-	public Venda(int cliente_id, int produto_id, String cliente,
-			String produto, BigDecimal valor_compra, BigDecimal valor_pago,
-			BigDecimal troco, Date data, Time hora) {
+	public Venda(int cliente_id, String cliente, int produto_id,
+			String produto, BigDecimal vtotal, BigDecimal vpagamento,
+			BigDecimal troco, String data, String hora) {
 		this.cliente_id = cliente_id;
 		this.cliente = cliente;
+		this.produto_id = produto_id;
 		this.produto = produto;
-		this.valor_compra = valor_compra;
-		this.valor_pago = valor_pago;
+		this.vtotal = vtotal;
+		this.vpagamento = vpagamento;
 		this.troco = troco;
 		this.data = data;
 		this.hora = hora;
@@ -84,20 +88,20 @@ public class Venda {
 		this.cliente_id = cliente_id;
 	}
 
-	public int getProduto_id() {
-		return produto_id;
-	}
-
-	public void setProduto_id(int produto_id) {
-		this.produto_id = produto_id;
-	}
-
 	public String getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(String cliente) {
 		this.cliente = cliente;
+	}
+
+	public int getProduto_id() {
+		return produto_id;
+	}
+
+	public void setProduto_id(int produto_id) {
+		this.produto_id = produto_id;
 	}
 
 	public String getProduto() {
@@ -108,20 +112,20 @@ public class Venda {
 		this.produto = produto;
 	}
 
-	public BigDecimal getValor_compra() {
-		return valor_compra;
+	public BigDecimal getVtotal() {
+		return vtotal;
 	}
 
-	public void setValor_compra(BigDecimal valor_compra) {
-		this.valor_compra = valor_compra;
+	public void setVtotal(BigDecimal vtotal) {
+		this.vtotal = vtotal;
 	}
 
-	public BigDecimal getValor_pago() {
-		return valor_pago;
+	public BigDecimal getVpagamento() {
+		return vpagamento;
 	}
 
-	public void setValor_pago(BigDecimal valor_pago) {
-		this.valor_pago = valor_pago;
+	public void setVpagamento(BigDecimal vpagamento) {
+		this.vpagamento = vpagamento;
 	}
 
 	public BigDecimal getTroco() {
@@ -132,19 +136,19 @@ public class Venda {
 		this.troco = troco;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
-	public Time getHora() {
+	public String getHora() {
 		return hora;
 	}
 
-	public void setHora(Time hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 

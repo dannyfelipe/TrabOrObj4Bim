@@ -98,11 +98,15 @@ public class DaoCliente {
 					+ "FROM CLIENTE WHERE ID_C = " + id_c);
 			rs.next();
 			if (rs.getString("NOME") != null) {
-				c = new Cliente(rs.getString("NOME"), rs.getString("TELEFONE"),
-						rs.getString("ENDERECO"), rs.getString("CIDADE"),
+				c = new Cliente(
+						rs.getString("NOME"),
+						rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"),
+						rs.getString("CIDADE"),
 						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
-						rs.getString("EMAIL"), Genero.valueOf(Genero.class,
-								rs.getString("GENERO")));
+						rs.getString("EMAIL"),
+						Genero.valueOf(Genero.class, rs.getString("GENERO"))
+						);
 			}
 			rs.close();
 			st.close();

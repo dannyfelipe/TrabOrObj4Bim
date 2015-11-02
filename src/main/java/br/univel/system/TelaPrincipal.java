@@ -68,13 +68,6 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnCadastros.add(mntmCliente);
 		
-		JMenuItem mntmBloquear = new JMenuItem("BLOQUEAR");
-		mntmBloquear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				block();
-			}
-		});
-		
 		JMenuItem mntmProduto = new JMenuItem("Produto");
 		mntmProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -83,7 +76,18 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		mnCadastros.add(mntmProduto);
-		mnCadastros.add(mntmBloquear);
+		
+		JMenu mnVenda = new JMenu("Venda");
+		menuBar.add(mnVenda);
+		
+		JMenuItem mntmLanarVenda = new JMenuItem("Lan\u00E7ar venda");
+		mntmLanarVenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// invoca o méteodo
+				carregarTeleVenda();
+			}
+		});
+		mnVenda.add(mntmLanarVenda);
 		
 		JMenu mnSistema = new JMenu("Sistema");
 		menuBar.add(mnSistema);
@@ -117,6 +121,22 @@ public class TelaPrincipal extends JFrame {
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
+	}
+
+	protected void carregarTeleVenda() {
+		// TODO Auto-generated method stub
+		
+		TelaCadastroVenda telaCadastroVenda = new TelaCadastroVenda();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaCadastroVenda);
+			}
+		};
+		telaCadastroVenda.setCloseAction(action);
+
+		tabbedPane.addTab("Venda de produto", telaCadastroVenda);
+		
 	}
 
 	protected void carregarTelaUsuario() {
