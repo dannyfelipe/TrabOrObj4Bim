@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -48,6 +49,7 @@ public class MioloCadastroCliente extends JPanel {
 	private DaoCliente dc = new DaoCliente();
 	private ClienteTable tableCliente;
 	private List<Cliente> listCliente = new ArrayList<>();
+	private int aux = -1;
 	
 
 	/**
@@ -243,6 +245,7 @@ public class MioloCadastroCliente extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				btnAction_Update();
 				
 			}
 		});
@@ -280,6 +283,30 @@ public class MioloCadastroCliente extends JPanel {
 	}
 	
 	
+	protected void btnAction_Update() {
+		// TODO Auto-generated method stub
+		
+		if (aux > -1) {
+			Cliente cliente = new Cliente(
+					Integer.parseInt(txtFc_id.getText()),
+					txtFc_nome.getText(),
+					txtFc_telefone.getText(),
+					txtFc_endereco.getText(),
+					txtFc_cidade.getText(),
+					Estado.valueOf(String.valueOf(cBxc_estado.getSelectedItem())),
+					txtFc_email.getText(),
+					Genero.valueOf(String.valueOf(cBxc_genero.getSelectedItem())));
+			dc.update(cliente);
+			tableCliente.updateList(aux, cliente);
+			limpar();
+			aux = -1;
+		}else{
+			JOptionPane.showMessageDialog(null, "Selecione um cliente!");
+		}
+		
+	}
+
+
 	private void listarClientes() {
 		// TODO Auto-generated method stub
 		
@@ -294,7 +321,12 @@ public class MioloCadastroCliente extends JPanel {
 		
 	}
 
-
+	/*
+	 * Método para adicionar um cliente na base de dados
+	 * cria um novo cliente, pega os dados do formulário
+	 * insere-o através do método inserir da classe DaoCliente
+	 * atualiza a tabela e limpa os campos
+	 */
 	protected void btnAction_Add() {
 		// TODO Auto-generated method stub
 		
@@ -312,7 +344,9 @@ public class MioloCadastroCliente extends JPanel {
 		
 	}
 
-
+	/*
+	 * Método para limpar os campos do formulário após a inserção do registro
+	 */
 	private void limpar() {
 		// TODO Auto-generated method stub
 		
@@ -334,7 +368,6 @@ public class MioloCadastroCliente extends JPanel {
 			//System.out.println(o.name());
 			cBxc_estado.addItem(o.name());
 		}
-		
 		//System.out.println("inserir");
 	}
 	
