@@ -62,7 +62,7 @@ public class TelaPrincipal extends JFrame {
 		mntmCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// invoca o método
-				carregarTelaCliente();
+				openScreenClientRegistration();
 			}
 
 		});
@@ -72,7 +72,7 @@ public class TelaPrincipal extends JFrame {
 		mntmProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// invoca o método
-				carregarTelaProduto();
+				openScreenProductRegistration();
 			}
 		});
 		mnCadastros.add(mntmProduto);
@@ -83,11 +83,29 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mntmLanarVenda = new JMenuItem("Lan\u00E7ar venda");
 		mntmLanarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// invoca o méteodo
-				carregarTeleVenda();
+				// invoca o método
+				openScreenSaleRegistration();
 			}
 		});
 		mnVenda.add(mntmLanarVenda);
+		
+		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");
+		menuBar.add(mnRelatrios);
+		
+		JMenuItem mntmCliente_1 = new JMenuItem("Cliente");
+		mntmCliente_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// invoca o método
+				openScreenClientReport();
+			}
+		});
+		mnRelatrios.add(mntmCliente_1);
+		
+		JMenuItem mntmProduto_1 = new JMenuItem("Produto");
+		mnRelatrios.add(mntmProduto_1);
+		
+		JMenuItem mntmVenda = new JMenuItem("Venda");
+		mnRelatrios.add(mntmVenda);
 		
 		JMenu mnSistema = new JMenu("Sistema");
 		menuBar.add(mnSistema);
@@ -99,7 +117,7 @@ public class TelaPrincipal extends JFrame {
 		mntmCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// invoca o método
-				carregarTelaUsuario();
+				openScreenUserRegistration();
 			}
 		});
 		mnUsurio.add(mntmCadastro);
@@ -123,7 +141,23 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
 
-	protected void carregarTeleVenda() {
+	protected void openScreenClientReport() {
+		// TODO Auto-generated method stub
+		
+		TelaRelatorioCliente telaRelatorioCliente = new TelaRelatorioCliente();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaRelatorioCliente);
+			}
+		};
+		telaRelatorioCliente.setCloseAction(action);
+
+		tabbedPane.addTab("Relatório de Cliente", telaRelatorioCliente);
+		
+	}
+
+	protected void openScreenSaleRegistration() {
 		// TODO Auto-generated method stub
 		
 		TelaCadastroVenda telaCadastroVenda = new TelaCadastroVenda();
@@ -139,7 +173,7 @@ public class TelaPrincipal extends JFrame {
 		
 	}
 
-	protected void carregarTelaUsuario() {
+	protected void openScreenUserRegistration() {
 		// TODO Auto-generated method stub
 		
 		TelaCadastroUsuario telaCadastroUsuario = new TelaCadastroUsuario();
@@ -155,7 +189,7 @@ public class TelaPrincipal extends JFrame {
 		
 	}
 
-	protected void carregarTelaProduto() {
+	protected void openScreenProductRegistration() {
 		// TODO Auto-generated method stub
 		
 		TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
@@ -171,7 +205,7 @@ public class TelaPrincipal extends JFrame {
 		
 	}
 
-	protected void carregarTelaCliente() {
+	protected void openScreenClientRegistration() {
 		// TODO Auto-generated method stub
 		
 		TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();

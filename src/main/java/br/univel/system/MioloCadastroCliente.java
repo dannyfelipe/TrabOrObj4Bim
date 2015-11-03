@@ -25,7 +25,7 @@ import br.univel.ClienteTable;
 import br.univel.Estado;
 import br.univel.Genero;
 import br.univel.connections.DaoCliente;
-import br.univel.rels.RelCliente;
+import br.univel.rels.RelCliente_estado;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -282,19 +282,6 @@ public class MioloCadastroCliente extends JPanel {
 			}
 		});
 		panel_1.add(btnNewButton_2);
-		
-		JButton btnRelUf = new JButton("Rel. UF");
-		btnRelUf.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				gerarRelUF();
-				
-			}
-		});
-		panel_1.add(btnRelUf);
-		
-		JButton btnRelCidade = new JButton("Rel. Cidade");
-		panel_1.add(btnRelCidade);
 
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -315,13 +302,6 @@ public class MioloCadastroCliente extends JPanel {
 		
 		uf();
 		gen();
-	}
-
-	protected void gerarRelUF() {
-		// TODO Auto-generated method stub
-		
-		new RelCliente();
-		
 	}
 
 	/*

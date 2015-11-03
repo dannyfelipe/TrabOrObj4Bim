@@ -25,7 +25,7 @@ import br.univel.ClienteTable;
 import br.univel.Estado;
 import br.univel.Genero;
 import br.univel.connections.DaoCliente;
-import br.univel.rels.RelCliente;
+import br.univel.rels.RelCliente_estado;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -122,7 +122,7 @@ public class MioloRelatorioCliente extends JPanel {
 	protected void gerarRelUF() {
 		// TODO Auto-generated method stub
 		
-		new RelCliente();
+		new RelCliente_estado();
 		
 	}
 

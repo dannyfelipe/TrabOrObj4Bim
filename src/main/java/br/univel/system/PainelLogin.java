@@ -81,8 +81,8 @@ public class PainelLogin extends JPanel {
 	public PainelLogin(Runnable acaoOk) {
 		this();
 		btnEntrar.addActionListener(e -> {
-			if (textField.getText().trim().equals("1")
-					&& new String(passwordField.getPassword()).equals("1")) {
+			if (textField.getText().trim().equals("admin")
+					&& new String(passwordField.getPassword()).equals("admin")) {
 				acaoOk.run();
 			} else {
 				JOptionPane.showMessageDialog(PainelLogin.this,
