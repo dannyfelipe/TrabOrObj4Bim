@@ -19,13 +19,13 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
-public class RelCliente {
+public class RelCliente_estado {
 	
-	private static final String OUT_PDF = "out.pdf";
+	private static final String OUT_PDF = "rel_cliente_uf.pdf";
 	private String arq = "C:\\Users\\DOT\\git\\TrabOrObj4Bim\\src\\main\\resources\\Cliente_uf.jasper";
 	private List<Cliente> listaC;
 
-	public RelCliente() {
+	public RelCliente_estado() {
 		
 		DaoCliente cliente = new DaoCliente();
 		listaC = cliente.listar();
