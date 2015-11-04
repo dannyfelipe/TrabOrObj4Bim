@@ -102,9 +102,21 @@ public class TelaPrincipal extends JFrame {
 		mnRelatrios.add(mntmCliente_1);
 		
 		JMenuItem mntmProduto_1 = new JMenuItem("Produto");
+		mntmProduto_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// invoca o método
+				openScreenProductReport();
+			}
+		});
 		mnRelatrios.add(mntmProduto_1);
 		
 		JMenuItem mntmVenda = new JMenuItem("Venda");
+		mntmVenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// invoca o método
+				openScreenSaleReport();
+			}
+		});
 		mnRelatrios.add(mntmVenda);
 		
 		JMenu mnSistema = new JMenu("Sistema");
@@ -141,6 +153,38 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
 
+	protected void openScreenSaleReport() {
+		// TODO Auto-generated method stub
+		
+		TelaRelatorioVenda telaRelatorioVenda = new TelaRelatorioVenda();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaRelatorioVenda);
+			}
+		};
+		telaRelatorioVenda.setCloseAction(action);
+
+		tabbedPane.addTab("Relatório de Vendas", telaRelatorioVenda);
+		
+	}
+
+	protected void openScreenProductReport() {
+		// TODO Auto-generated method stub
+		
+		TelaRelatorioProduto telaRelatorioProduto = new TelaRelatorioProduto();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaRelatorioProduto);
+			}
+		};
+		telaRelatorioProduto.setCloseAction(action);
+
+		tabbedPane.addTab("Relatório de Produtos", telaRelatorioProduto);
+		
+	}
+
 	protected void openScreenClientReport() {
 		// TODO Auto-generated method stub
 		
@@ -153,7 +197,7 @@ public class TelaPrincipal extends JFrame {
 		};
 		telaRelatorioCliente.setCloseAction(action);
 
-		tabbedPane.addTab("Relatório de Cliente", telaRelatorioCliente);
+		tabbedPane.addTab("Relatório de Clientes", telaRelatorioCliente);
 		
 	}
 
