@@ -136,7 +136,6 @@ public class MioloRelatorioCliente extends JPanel {
 		// TODO Auto-generated method stub
 		// chama a classe
 		new RelCliente_estado();
-		
 	}
 
 	/*
