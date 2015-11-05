@@ -28,7 +28,7 @@ import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 public class RelProduto_geral {
 
 	private static final String OUT_PDF = "rel_produto_geral.pdf";
-	private String arq = "C:\\Users\\DOT\\git\\TrabOrObj4Bim\\src\\main\\resources\\Produto.jasper";
+	private String arq = "C:\\Users\\DOT\\git\\TrabOrObj4Bim\\src\\main\\resources\\RelProdutoGeral.jasper";
 	private List<Produto> ProductList;
 
 	public RelProduto_geral() {

@@ -22,7 +22,7 @@ import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 public class RelCliente_estado {
 	
 	private static final String OUT_PDF = "rel_cliente_uf.pdf";
-	private String arq = "C:\\Users\\DOT\\git\\TrabOrObj4Bim\\src\\main\\resources\\Cliente_uf.jasper";
+	private String arq = "C:\\Users\\DOT\\git\\TrabOrObj4Bim\\src\\main\\resources\\RelClienteUf.jasper";
 	private List<Cliente> listaC;
 
 	public RelCliente_estado() {

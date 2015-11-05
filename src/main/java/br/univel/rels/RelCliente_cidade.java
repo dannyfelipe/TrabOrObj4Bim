@@ -28,7 +28,7 @@ import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 public class RelCliente_cidade {
 
 	private static final String OUT_PDF = "rel_cliente_cidade.pdf";
-	private String arq = "C:\\Users\\DOT\\git\\TrabOrObj4Bim\\src\\main\\resources\\Cliente_cidade.jasper";
+	private String arq = "C:\\Users\\DOT\\git\\TrabOrObj4Bim\\src\\main\\resources\\RelClienteCidade.jasper";
 	private List<Cliente> listaC;
 
 	public RelCliente_cidade() {
