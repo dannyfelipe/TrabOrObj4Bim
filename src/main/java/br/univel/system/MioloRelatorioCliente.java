@@ -25,6 +25,7 @@ import br.univel.ClienteTable;
 import br.univel.Estado;
 import br.univel.Genero;
 import br.univel.connections.DaoCliente;
+import br.univel.rels.RelCliente_cidade;
 import br.univel.rels.RelCliente_estado;
 
 import javax.swing.JScrollPane;
@@ -91,14 +92,20 @@ public class MioloRelatorioCliente extends JPanel {
 		JButton btnRelUf = new JButton("Gerar relat\u00F3rio Cliente/UF");
 		btnRelUf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				gerarRelUF();
+				// invoca o método
+				gerarRelClienteUF();
 				
 			}
 		});
 		panel_1.add(btnRelUf);
 		
 		JButton btnRelCidade = new JButton("Gerar relat\u00F3rio Cliente/Cidade");
+		btnRelCidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// invoca o método
+				gerarRelClienteCidade();
+			}
+		});
 		panel_1.add(btnRelCidade);
 
 		JPanel panel = new JPanel();
@@ -119,9 +126,15 @@ public class MioloRelatorioCliente extends JPanel {
 		listarClientes();
 	}
 
-	protected void gerarRelUF() {
+	protected void gerarRelClienteCidade() {
 		// TODO Auto-generated method stub
-		
+		// chama a classe
+		new RelCliente_cidade();
+	}
+
+	protected void gerarRelClienteUF() {
+		// TODO Auto-generated method stub
+		// chama a classe
 		new RelCliente_estado();
 		
 	}
