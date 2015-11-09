@@ -16,6 +16,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import org.jdesktop.swingx.JXBusyLabel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.function.Function;
@@ -293,14 +295,23 @@ public class TelaPrincipal extends JFrame {
 	}
 
 	private void blockParaLogin() {
+		
 		Runnable acaoOk = () -> {
 			glass.setVisible(false);
 			glass = new BlockPanel();
 		};
 
+		
+		//---- USAR A INDICAÇÃO DE PROGRESSO.
+		//JXBusyLabel busy = new JXBusyLabel();
+		//busy.setBusy(true);
+		//glass = new BlockPanel(busy);
+		//-----------------------------------
+		
+		//---- USAR O PAINEL DE LOGIN.
 		PainelLogin painelLogin = new PainelLogin(acaoOk);
-
 		glass = new BlockPanel(painelLogin);
+		//-----------------------------------
 
 		setGlassPane(glass);
 
