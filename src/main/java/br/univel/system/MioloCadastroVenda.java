@@ -236,6 +236,8 @@ public class MioloCadastroVenda extends JPanel {
 				if (evt.getClickCount() == 2) {
 					Venda v = (Venda) saleList.get(table.getSelectedRow());
 					
+					unlockFields();
+					
 					txtFv_id.setText(String.valueOf(v.getId_v()));
 					cBxv_cliente.setSelectedItem(v.getCliente());
 					cBxv_produto.setSelectedItem(v.getProduto());
@@ -319,10 +321,29 @@ public class MioloCadastroVenda extends JPanel {
 		
 		// recupera data e hora do SO, exibe nos campos de texto
 		exibirDataHora();
+		
+		lockFields();
+		
+	}
+	
+	// habilita os campos de Data/Hora para edição
+	private void unlockFields() {
+		// TODO Auto-generated method stub
+		txtFv_data.setEditable(true);
+		txtFv_hora.setEditable(true);
+	}
+
+	// desabilita os campos de Data/Hora para edição
+	private void lockFields() {
+		// TODO Auto-generated method stub
+		txtFv_data.setEditable(false);
+		txtFv_hora.setEditable(false);
 	}
 
 	private void exibirDataHora() {
 		// TODO Auto-generated method stub
+		
+		lockFields();
 		
 		SimpleDateFormat frm = new SimpleDateFormat("dd/MM/yyyy");
 		txtFv_data.setText(frm.format(new java.util.Date()));
@@ -381,6 +402,9 @@ public class MioloCadastroVenda extends JPanel {
 	protected void btnAction_Update() {
 		// TODO Auto-generated method stub
 		
+		txtFv_data.setEditable(true);
+		txtFv_hora.setEditable(true);
+		
 		if (aux > -1) {
 			Venda venda = new Venda(
 					Integer.parseInt(txtFv_id.getText()),
@@ -429,6 +453,9 @@ public class MioloCadastroVenda extends JPanel {
 	 */
 	protected void btnAction_Add() {
 		// TODO Auto-generated method stub
+		
+		txtFv_data.setEditable(false);
+		txtFv_hora.setEditable(false);
 		
 		Venda venda = new Venda(
 				customerList.get(cBxv_cliente.getSelectedIndex() -1).getId_c(),

@@ -137,12 +137,19 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mntmBloquear_1 = new JMenuItem("Bloquear");
 		mntmBloquear_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// bloqueia a tela
 				block();
 			}
 		});
 		mnSistema.add(mntmBloquear_1);
 		
 		JMenuItem mntmEncerrar = new JMenuItem("Encerrar");
+		mntmEncerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// encerra a aplicação
+				System.exit(0);
+			}
+		});
 		mnSistema.add(mntmEncerrar);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

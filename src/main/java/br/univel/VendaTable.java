@@ -39,8 +39,12 @@ public class VendaTable extends AbstractTableModel {
 		switch (col) {
 		case 0:
 			return v.getId_v();
+		case 1:
+			return v.getCliente_id();
 		case 2:
 			return v.getCliente();
+		case 3:
+			return v.getProduto_id();
 		case 4:
 			return v.getProduto();
 		case 5:
@@ -64,18 +68,22 @@ public class VendaTable extends AbstractTableModel {
 		case 0:
 			return "CÓD.";
 		case 1:
-			return "CLIENTE";
+			return "CÓD. CLIENTE";
 		case 2:
-			return "PRODUTO";
+			return "CLIENTE";
 		case 3:
-			return "VALOR TOTAL";
+			return "CÓD. PRODUTO";
 		case 4:
-			return "VALOR PAGAMENTO";
+			return "PRODUTO";
 		case 5:
-			return "TROCO";
+			return "VALOR TOTAL";
 		case 6:
-			return "DATA";
+			return "VALOR PAGAMENTO";
 		case 7:
+			return "TROCO";
+		case 8:
+			return "DATA";
+		case 9:
 			return "HORA";
 		default:
 			return "";
