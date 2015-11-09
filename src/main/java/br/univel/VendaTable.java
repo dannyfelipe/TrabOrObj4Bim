@@ -39,12 +39,8 @@ public class VendaTable extends AbstractTableModel {
 		switch (col) {
 		case 0:
 			return v.getId_v();
-		case 1:
-			return v.getCliente_id();
 		case 2:
 			return v.getCliente();
-		case 3:
-			return v.getProduto_id();
 		case 4:
 			return v.getProduto();
 		case 5:
@@ -68,22 +64,18 @@ public class VendaTable extends AbstractTableModel {
 		case 0:
 			return "CÓD.";
 		case 1:
-			return "CÓD. CLIENTE";
-		case 2:
 			return "CLIENTE";
-		case 3:
-			return "CÓD. PRODUTO";
-		case 4:
+		case 2:
 			return "PRODUTO";
-		case 5:
+		case 3:
 			return "VALOR TOTAL";
-		case 6:
+		case 4:
 			return "VALOR PAGAMENTO";
-		case 7:
+		case 5:
 			return "TROCO";
-		case 8:
+		case 6:
 			return "DATA";
-		case 9:
+		case 7:
 			return "HORA";
 		default:
 			return "";
@@ -101,8 +93,8 @@ public class VendaTable extends AbstractTableModel {
 	/*
 	 * Adiciona uma venda na lista e atualiza a tabela
 	 */
-	public void addList(Venda v){
-		this.lista.add(v);
+	public void addList(List<Venda> v){
+		this.lista = v;
 		this.fireTableStructureChanged();
 	}
 	
@@ -122,4 +114,5 @@ public class VendaTable extends AbstractTableModel {
 		this.fireTableStructureChanged();
 	}
 
+	
 }

@@ -108,15 +108,13 @@ public class DaoVenda {
 			if (rs.getString("CLIENTE") != null) {
 				v = new Venda(
 						rs.getInt("CLIENTE_ID"),
-						rs.getString("CLIENTE"),
 						rs.getInt("PRODUTO_ID"),
+						rs.getString("CLIENTE"),
 						rs.getString("PRODUTO"),
 						rs.getBigDecimal("VTOTAL"),
 						rs.getBigDecimal("VPAGAMENTO"),
 						rs.getBigDecimal("TROCO"),
-						//rs.getDate("DATA"),
 						rs.getString("DATA"),
-						//rs.getTime("HORA")
 						rs.getString("HORA")
 						);
 			}
@@ -142,15 +140,13 @@ public class DaoVenda {
 				lista.add(v = new Venda(
 						rs.getInt("ID_V"),
 						rs.getInt("CLIENTE_ID"),
-						rs.getString("CLIENTE"),
 						rs.getInt("PRODUTO_ID"),
+						rs.getString("CLIENTE"),
 						rs.getString("PRODUTO"),
 						rs.getBigDecimal("VTOTAL"),
 						rs.getBigDecimal("VPAGAMENTO"),
 						rs.getBigDecimal("TROCO"),
-						//rs.getDate("DATA"),
 						rs.getString("DATA"),
-						//rs.getTime("HORA")
 						rs.getString("HORA")
 					)
 				);
