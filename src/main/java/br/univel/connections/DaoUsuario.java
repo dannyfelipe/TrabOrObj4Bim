@@ -33,10 +33,11 @@ public class DaoUsuario {
 	 */
 	public void insert(Usuario u) {
 		try {
-			ps = con.prepareStatement("INSERT INTO USUARIO (CLIENTE_ID, CLIENTE, PASSWORD) VALUES (?, ?, ?)");
+			ps = con.prepareStatement("INSERT INTO USUARIO (CLIENTE_ID, CLIENTE, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)");
 			ps.setInt(1, u.getCliente_id());
 			ps.setString(2, u.getCliente());
-			ps.setString(3, u.getPassword());
+			ps.setString(3, u.getUsername());
+			ps.setString(4, u.getPassword());
 			ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
@@ -50,11 +51,12 @@ public class DaoUsuario {
 	 */
 	public void update(Usuario u) {
 		try {
-			ps = con.prepareStatement("UPDATE USUARIO SET CLIENTE_ID = ?, CLIENTE = ?, PASSWORD =? " +
+			ps = con.prepareStatement("UPDATE USUARIO SET CLIENTE_ID = ?, CLIENTE = ?, USERNAME = ?, PASSWORD =? " +
 										"WHERE ID_U" + u.getId_u());
 			ps.setInt(1, u.getCliente_id());
 			ps.setString(2, u.getCliente());
-			ps.setString(3, u.getPassword());
+			ps.setString(3, u.getUsername());
+			ps.setString(4, u.getPassword());
 			ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso");
@@ -90,6 +92,7 @@ public class DaoUsuario {
 				u.setId_u(id_u);
 				u.setCliente_id(rs.getInt("CLIENTE_ID"));
 				u.setCliente(rs.getString("CLIENTE"));
+				u.setUsername(rs.getString("USERNAME"));
 				u.setPassword(rs.getString("PASSWORD"));
 				rs.close();
 				st.close();
@@ -108,12 +111,13 @@ public class DaoUsuario {
 		lista = new ArrayList<Usuario>();
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT ID_U, CLIENTE_ID, CLIENTE, PASSWORD FROM USUARIO");
+			rs = st.executeQuery("SELECT ID_U, CLIENTE_ID, CLIENTE, USERNAME, PASSWORD FROM USUARIO");
 			while (rs.next()) {				
 				u = new Usuario();
 				u.setId_u(rs.getInt("ID_U"));
 				u.setCliente_id(rs.getInt("CLIENTE_ID"));
 				u.setCliente(rs.getString("CLIENTE"));
+				u.setUsername(rs.getString("USERNAME"));
 				u.setPassword(rs.getString("PASSWORD"));
 				lista.add(u);
 			}

@@ -14,6 +14,7 @@ public class Usuario {
 	private int id_u;
 	private int cliente_id;
 	private String cliente;
+	private String username;
 	private String password;
 	
 	/*
@@ -45,6 +46,13 @@ public class Usuario {
 	}
 	public void setCliente(String cliente) {
 		this.cliente = cliente;
+	}
+	
+	public String getUsername() {
+		return password;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

@@ -22,7 +22,7 @@ public class UsuarioTable extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 5;
 	}
 
 	@Override
@@ -35,16 +35,18 @@ public class UsuarioTable extends AbstractTableModel {
 	public Object getValueAt(int row, int col) {
 		// TODO Auto-generated method stub
 
-		Usuario o = lista.get(row);
+		Usuario u = lista.get(row);
 		switch (col) {
 		case 0:
-			return o.getId_u();
+			return u.getId_u();
 		case 1:
-			return o.getCliente_id();
+			return u.getCliente_id();
 		case 2:
-			return o.getCliente();
+			return u.getCliente();
 		case 3:
-			return o.getPassword();
+			return u.getUsername();
+		case 4:
+			return u.getPassword();
 		default:
 			return "";
 		}
@@ -60,6 +62,8 @@ public class UsuarioTable extends AbstractTableModel {
 		case 2:
 			return "CLIENTE";
 		case 3:
+			return "USERNAME";
+		case 4:
 			return "PASSWORD";
 		default:
 			return "";

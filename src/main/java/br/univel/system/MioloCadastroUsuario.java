@@ -47,6 +47,7 @@ public class MioloCadastroUsuario extends JPanel {
 	private List<Usuario> listUsuario = new ArrayList<>();
 	private int aux = -1;
 	private JTextField txtPFu_password;
+	private JTextField txtPFu_username;
 	
 
 	/**
@@ -55,10 +56,10 @@ public class MioloCadastroUsuario extends JPanel {
 	public MioloCadastroUsuario() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0,
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JPanel panel_2 = new JPanel();
@@ -121,13 +122,30 @@ public class MioloCadastroUsuario extends JPanel {
 		gbc_txtFu_cliente.gridy = 3;
 		add(txtFu_cliente, gbc_txtFu_cliente);
 		txtFu_cliente.setColumns(10);
+		
+		JLabel lblUsername = new JLabel("Username:");
+		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
+		gbc_lblUsername.anchor = GridBagConstraints.EAST;
+		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsername.gridx = 0;
+		gbc_lblUsername.gridy = 4;
+		add(lblUsername, gbc_lblUsername);
+		
+		txtPFu_username = new JTextField();
+		GridBagConstraints gbc_txtPFu_username = new GridBagConstraints();
+		gbc_txtPFu_username.insets = new Insets(0, 0, 5, 0);
+		gbc_txtPFu_username.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtPFu_username.gridx = 1;
+		gbc_txtPFu_username.gridy = 4;
+		add(txtPFu_username, gbc_txtPFu_username);
+		txtPFu_username.setColumns(10);
 
 		JLabel lblEndereo = new JLabel("Password:");
 		GridBagConstraints gbc_lblEndereo = new GridBagConstraints();
 		gbc_lblEndereo.anchor = GridBagConstraints.EAST;
 		gbc_lblEndereo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEndereo.gridx = 0;
-		gbc_lblEndereo.gridy = 4;
+		gbc_lblEndereo.gridy = 5;
 		add(lblEndereo, gbc_lblEndereo);
 		
 		txtPFu_password = new JTextField();
@@ -135,7 +153,7 @@ public class MioloCadastroUsuario extends JPanel {
 		gbc_txtPFu_password.insets = new Insets(0, 0, 5, 0);
 		gbc_txtPFu_password.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtPFu_password.gridx = 1;
-		gbc_txtPFu_password.gridy = 4;
+		gbc_txtPFu_password.gridy = 5;
 		add(txtPFu_password, gbc_txtPFu_password);
 		txtPFu_password.setColumns(10);
 		
@@ -145,7 +163,7 @@ public class MioloCadastroUsuario extends JPanel {
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 5;
+		gbc_scrollPane.gridy = 6;
 		add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
@@ -172,7 +190,7 @@ public class MioloCadastroUsuario extends JPanel {
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.VERTICAL;
 		gbc_panel_1.gridx = 1;
-		gbc_panel_1.gridy = 7;
+		gbc_panel_1.gridy = 8;
 		add(panel_1, gbc_panel_1);
 
 		JButton btnNewButton = new JButton("Salvar");
@@ -210,7 +228,7 @@ public class MioloCadastroUsuario extends JPanel {
 		gbc_panel.anchor = GridBagConstraints.EAST;
 		gbc_panel.gridwidth = 2;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 8;
+		gbc_panel.gridy = 9;
 		add(panel, gbc_panel);
 
 		JLabel lblMensagem = new JLabel("Mensagem:");
