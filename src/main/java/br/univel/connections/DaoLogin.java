@@ -1,5 +1,9 @@
 package br.univel.connections;
 
+/**
+ * @author Danny Felipe, 12/11/2015 - 01:55:18
+ */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,6 +22,9 @@ public class DaoLogin {
 	String user = "root";
 	String password = "";
 	
+	/*
+	 * Método de conexão com o banco de dados através do driver jdbc para mysql
+	 */
 	public void openCon() {
 		try {
 			Class.forName(driverName);
