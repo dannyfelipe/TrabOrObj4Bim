@@ -15,3 +15,17 @@ public final class Auth {
 	}
 
 }
+
+/*
+ * MD5
+ * SELECT MD5('minhasenha');
+ * 
+ * * nunca utilizar
+ * SELECT CRC32('meuteste');
+ * 
+ * SHA1
+ * SELECT SHA1('minhaNovaSenha');
+ * 
+ * SELECT MD5 + SALT
+ * SELECT MD5('adkjsadhkjasd' + minhaSenha + 'ajdalskjdalkjds');
+ * */
