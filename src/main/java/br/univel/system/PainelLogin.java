@@ -20,13 +20,19 @@ import java.awt.Color;
 
 import javax.swing.JButton;
 
+import br.univel.connections.DaoLogin;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+
 public class PainelLogin extends JPanel {
 
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JButton btnEntrar;
 
-	public PainelLogin() {
+	public PainelLogin(Runnable acaoOk) {
 		setBackground(Color.WHITE);
 		setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -71,6 +77,11 @@ public class PainelLogin extends JPanel {
 		add(passwordField, gbc_passwordField);
 
 		btnEntrar = new JButton("Entrar");
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				login(acaoOk);
+			}
+		});
 		GridBagConstraints gbc_btnEntrar = new GridBagConstraints();
 		gbc_btnEntrar.insets = new Insets(0, 0, 20, 0);
 		gbc_btnEntrar.gridx = 1;
@@ -78,7 +89,43 @@ public class PainelLogin extends JPanel {
 		add(btnEntrar, gbc_btnEntrar);
 	}
 
-	public PainelLogin(Runnable acaoOk) {
+	public void login(Runnable acaoOk) {
+		// TODO Auto-generated method stub
+
+		try {
+			DaoLogin dl = new DaoLogin();
+
+			dl.openCon();
+			dl.st = dl.con.createStatement();
+
+			String sql = "SELECT USERNAME, PASSWORD " +
+						 "FROM USUARIO " +
+						 "WHERE USERNAME = '" + textField.getText() + "' AND PASSWORD = '" + passwordField.getText() + "'";
+			dl.rs = dl.st.executeQuery(sql);
+
+			dl.rs.first();
+
+			if (textField.getText().equals(dl.rs.getString("username"))
+					&& passwordField.getText().equals(dl.rs.getString("password"))) {
+				JOptionPane.showMessageDialog(null,
+						"Acessando o sistema. Informações carregadas.");
+				acaoOk.run();
+			}
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(PainelLogin.this,
+					"Usuário e/ou senha inválidos!");
+			limpar();
+
+		}
+	}
+
+	private void limpar() {
+		// TODO Auto-generated method stub
+		textField.setText("");
+		passwordField.setText("");
+	}
+
+	/*public PainelLogin(Runnable acaoOk) {
 		this();
 		btnEntrar.addActionListener(e -> {
 			if (textField.getText().trim().equals("admin")
@@ -89,6 +136,6 @@ public class PainelLogin extends JPanel {
 						"Usuário e/ou senha inválidos!");
 			}
 		});
+	}*/
 
-	}
 }

@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.mysql.jdbc.Driver;
+
 public class DaoLogin {
 	
 	public Connection con;
@@ -21,6 +23,7 @@ public class DaoLogin {
 			Class.forName(driverName);
 			con = DriverManager.getConnection(url, user, password);
 			st = con.createStatement();
+			System.out.println("ok, dentro do try");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
