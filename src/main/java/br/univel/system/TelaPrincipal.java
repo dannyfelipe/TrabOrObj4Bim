@@ -27,6 +27,14 @@ public class TelaPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
 	private BlockPanel glass;
+	
+	private String ABA1 = "Cadastro de Cliente";
+	private String ABA2 = "Cadastro de Produto";
+	private String ABA3 = "Cadastro de Usuário";
+	private String ABA4 = "Venda de Produto";
+	private String ABA5 = "Relatório de Clientes";
+	private String ABA6 = "Relatório de Produtos";
+	private String ABA7 = "Relatório de Vendas";
 
 	/**
 	 * Launch the application.
@@ -49,6 +57,7 @@ public class TelaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipal() {
+		setTitle("Sistema Gen\u00E9rico");
 
 		blockParaLogin();
 
@@ -174,9 +183,16 @@ public class TelaPrincipal extends JFrame {
 			}
 		};
 		telaRelatorioVenda.setCloseAction(action);
-
-		tabbedPane.addTab("Relatório de Vendas", telaRelatorioVenda);
 		
+		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+			if (tabbedPane.getTitleAt(i).equals(ABA7)) {
+				tabbedPane.setSelectedIndex(i);
+				return;
+			}
+		}
+
+		tabbedPane.addTab(ABA7, telaRelatorioVenda);
+		abaAtual();
 	}
 
 	protected void openScreenProductReport() {
@@ -190,9 +206,16 @@ public class TelaPrincipal extends JFrame {
 			}
 		};
 		telaRelatorioProduto.setCloseAction(action);
-
-		tabbedPane.addTab("Relatório de Produtos", telaRelatorioProduto);
 		
+		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+			if (tabbedPane.getTitleAt(i).equals(ABA6)) {
+				tabbedPane.setSelectedIndex(i);
+				return;
+			}
+		}
+
+		tabbedPane.addTab(ABA6, telaRelatorioProduto);
+		abaAtual();
 	}
 
 	protected void openScreenClientReport() {
@@ -206,9 +229,16 @@ public class TelaPrincipal extends JFrame {
 			}
 		};
 		telaRelatorioCliente.setCloseAction(action);
-
-		tabbedPane.addTab("Relatório de Clientes", telaRelatorioCliente);
 		
+		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+			if (tabbedPane.getTitleAt(i).equals(ABA5)) {
+				tabbedPane.setSelectedIndex(i);
+				return;
+			}
+		}
+
+		tabbedPane.addTab(ABA5, telaRelatorioCliente);
+		abaAtual();
 	}
 
 	protected void openScreenSaleRegistration() {
@@ -222,9 +252,16 @@ public class TelaPrincipal extends JFrame {
 			}
 		};
 		telaCadastroVenda.setCloseAction(action);
-
-		tabbedPane.addTab("Venda de produto", telaCadastroVenda);
 		
+		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+			if (tabbedPane.getTitleAt(i).equals(ABA4)) {
+				tabbedPane.setSelectedIndex(i);
+				return;
+			}
+		}
+
+		tabbedPane.addTab(ABA4, telaCadastroVenda);
+		abaAtual();
 	}
 
 	protected void openScreenUserRegistration() {
@@ -238,9 +275,16 @@ public class TelaPrincipal extends JFrame {
 			}
 		};
 		telaCadastroUsuario.setCloseAction(action);
-
-		tabbedPane.addTab("Cadastro de Usuário", telaCadastroUsuario);
 		
+		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+			if (tabbedPane.getTitleAt(i).equals(ABA3)) {
+				tabbedPane.setSelectedIndex(i);
+				return;
+			}
+		}
+
+		tabbedPane.addTab(ABA3, telaCadastroUsuario);
+		abaAtual();
 	}
 
 	protected void openScreenProductRegistration() {
@@ -254,9 +298,16 @@ public class TelaPrincipal extends JFrame {
 			}
 		};
 		telaCadastroProduto.setCloseAction(action);
-
-		tabbedPane.addTab("Cadastro de Produto", telaCadastroProduto);
 		
+		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+			if (tabbedPane.getTitleAt(i).equals(ABA2)) {
+				tabbedPane.setSelectedIndex(i);
+				return;
+			}
+		}
+
+		tabbedPane.addTab(ABA2, telaCadastroProduto);
+		abaAtual();
 	}
 
 	protected void openScreenClientRegistration() {
@@ -270,11 +321,27 @@ public class TelaPrincipal extends JFrame {
 			}
 		};
 		telaCadastroCliente.setCloseAction(action);
-
-		tabbedPane.addTab("Cadastro de Cliente", telaCadastroCliente);
 		
+		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+			if (tabbedPane.getTitleAt(i).equals(ABA1)) {
+				tabbedPane.setSelectedIndex(i);
+				return;
+			}
+		}
+		tabbedPane.addTab(ABA1, telaCadastroCliente);
+		abaAtual();
 	}
 
+	/*
+	 * Define o foco para a última aba instânciada
+	 */
+	private void abaAtual() {
+		tabbedPane.setSelectedIndex(tabbedPane.getTabCount()-1);
+	}
+
+	/*
+	 * Bloqueia a tela
+	 */
 	protected void block() {
 		setGlassPane(glass);
 		glass.setVisible(true);
