@@ -51,11 +51,13 @@ public class ConexaoBD {
 	/*
 	 * Método para fechar a conexão com o banco de dados 
 	 */
-	public void conClose(){
+	public boolean conClose(){
 		try {
 			con.close();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
