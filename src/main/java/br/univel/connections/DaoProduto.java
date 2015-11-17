@@ -32,7 +32,7 @@ public class DaoProduto {
 	/*
 	 * Método para inserir um novo produto na base de dados
 	 */
-	public void insert(Produto p) {
+	public int insert(Produto p) {
 		try {
 			ps = con.prepareStatement("INSERT INTO PRODUTO (BARCODE, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MLUCRO) VALUES (?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, p.getBarcode());
@@ -41,18 +41,21 @@ public class DaoProduto {
 			ps.setInt(4, p.getUnidade());
 			ps.setBigDecimal(5, p.getCusto());
 			ps.setBigDecimal(6, p.getMlucro());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso.");
+			
+			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 	
 	/*
 	 * Método para atualizar os dados do produto na base de dados
 	 */
-	public void update(Produto p) {
+	public int update(Produto p) {
 		try {
 			ps = con.prepareStatement("UPDATE PRODUTO SET BARCODE = ?, CATEGORIA = ?, DESCRICAO = ?,"
 					+ " UNIDADE = ?, CUSTO = ?, MLUCRO = ? WHERE ID_P = " + p.getId_p());
@@ -62,11 +65,14 @@ public class DaoProduto {
 			ps.setInt(4, p.getUnidade());
 			ps.setBigDecimal(5, p.getCusto());
 			ps.setBigDecimal(6, p.getMlucro());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso.");
+			
+			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 	}
@@ -74,14 +80,17 @@ public class DaoProduto {
 	/*
 	 * Método para excluir um produto da base de dados
 	 */
-	public void delete(int id_p) {
+	public int delete(int id_p) {
 		try {
 			ps = con.prepareStatement("DELETE FROM PRODUTO WHERE ID_P =" + id_p);
 			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Produto excluído com sucesso.");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 	
@@ -92,9 +101,9 @@ public class DaoProduto {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT BARCODE, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MLUCRO "
-					+ "FROM PRODUTO WHERE COD_P = " + id_p);
+					+ "FROM PRODUTO WHERE ID_P = " + id_p);
 			rs.next();
-			if (rs.getString("NOME") != null) {
+			if (rs.getString("BARCODE") != null) {
 				p = new Produto(
 						id_p,
 						rs.getInt("BARCODE"),
@@ -106,7 +115,11 @@ public class DaoProduto {
 			}
 			rs.close();
 			st.close();
-			return p;
+			
+			if (p != null) {
+				return p;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -118,10 +131,12 @@ public class DaoProduto {
 	 */
 	public List<Produto> listar() {
 		lista = new ArrayList<Produto>();
+		
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT ID_P, BARCODE, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MLUCRO "
 					+ "FROM PRODUTO");
+			
 			while (rs.next()) {
 				lista.add(p = new Produto(
 						rs.getInt("ID_P"),
@@ -134,10 +149,14 @@ public class DaoProduto {
 						)
 				);
 			}
+			
 			rs.close();
 			st.close();
-			if (lista != null)
+			
+			if (lista != null) {
 				return lista;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

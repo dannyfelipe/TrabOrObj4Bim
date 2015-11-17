@@ -17,6 +17,9 @@ public class DaoLogin {
 	public Statement st;
 	public ResultSet rs;
 	
+	/*
+	 * parâmetros para conexão com o banco de dados
+	 */
 	String driverName = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost/java_ooii";
 	String user = "root";
@@ -30,7 +33,6 @@ public class DaoLogin {
 			Class.forName(driverName);
 			con = DriverManager.getConnection(url, user, password);
 			st = con.createStatement();
-			System.out.println("ok, dentro do try");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

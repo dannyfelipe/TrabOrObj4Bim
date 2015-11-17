@@ -31,7 +31,7 @@ public class DaoVenda {
 	/*
 	 * Método para efetuar uma nova venda na base de dados
 	 */
-	public void insert(Venda v) {
+	public int insert(Venda v) {
 		try {
 			ps = con.prepareStatement("INSERT INTO VENDA (CLIENTE_ID, CLIENTE, PRODUTO_ID, PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, v.getCliente_id());
@@ -46,18 +46,21 @@ public class DaoVenda {
 			//ps.setTime(9, v.getHora());
 			ps.setString(9, v.getHora());
 			
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Venda efetuada com sucesso.");
+			
+			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
 	/*
 	 * Método para atualizar os dados da venda na base de dados
 	 */
-	public void update(Venda v) {
+	public int update(Venda v) {
 		try {
 			ps = con.prepareStatement("UPDATE VENDA SET CLIENTE_ID = ?, CLIENTE = ?"
 					+ " PRODUTO_ID = ?, PRODUTO = ?, VTOTAL = ?, VPAGAMENTO = ?,"
@@ -74,25 +77,31 @@ public class DaoVenda {
 			//ps.setTime(9, v.getHora());
 			ps.setString(9, v.getHora());
 			
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Venda atualizada com sucesso.");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
 	/*
 	 * Método para excluir uma venda da base de dados
 	 */
-	public void delete(int id_v) {
+	public int delete(int id_v) {
 		try {
 			ps = con.prepareStatement("DELETE FROM VENDA WHERE ID_V =" + id_v);
 			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Venda excluída com sucesso.");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
@@ -105,6 +114,7 @@ public class DaoVenda {
 			rs = st.executeQuery("SELECT CLIENTE_ID, CLIENTE, PRODUTO_ID, PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA "
 					+ "FROM VENDA WHERE ID_V = " + id_v);
 			rs.next();
+			
 			if (rs.getString("CLIENTE") != null) {
 				v = new Venda(
 						rs.getInt("CLIENTE_ID"),
@@ -118,9 +128,14 @@ public class DaoVenda {
 						rs.getString("HORA")
 						);
 			}
+			
 			rs.close();
 			st.close();
-			return v;
+			
+			if (v != null) {
+				return v;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,10 +147,12 @@ public class DaoVenda {
 	 */
 	public List<Venda> listar() {
 		lista = new ArrayList<Venda>();
+		
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT ID_V, CLIENTE_ID, CLIENTE, PRODUTO_ID, PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA "
 					+ "FROM VENDA");
+
 			while (rs.next()) {
 				lista.add(v = new Venda(
 						rs.getInt("ID_V"),
@@ -151,10 +168,13 @@ public class DaoVenda {
 					)
 				);
 			}
+			
 			rs.close();
 			st.close();
-			if (lista != null)
+			
+			if (lista != null) {
 				return lista;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

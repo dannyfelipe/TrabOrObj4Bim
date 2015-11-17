@@ -88,7 +88,13 @@ public class PainelLogin extends JPanel {
 		gbc_btnEntrar.gridy = 2;
 		add(btnEntrar, gbc_btnEntrar);
 	}
-
+	
+	/*
+	 * método para autenticação do usuário/cliente
+	 * realiza a conexão com o banco, verifica os inputs através do 'equals'
+	 * sendo verdadeiro, carrega telaprincipal
+	 * ou false, exibe mensagem de permissão negada
+	 */
 	public void login(Runnable acaoOk) {
 		// TODO Auto-generated method stub
 
@@ -97,14 +103,17 @@ public class PainelLogin extends JPanel {
 
 			dl.openCon();
 			dl.st = dl.con.createStatement();
-
+			
+			// query SQL
 			String sql = "SELECT USERNAME, PASSWORD " +
 						 "FROM USUARIO " +
 						 "WHERE USERNAME = '" + textField.getText() + "' AND PASSWORD = '" + passwordField.getText() + "'";
+			// executa a query
 			dl.rs = dl.st.executeQuery(sql);
 
 			dl.rs.first();
-
+			
+			// verifica se o usuário e senha são iguais aos cadastrados no banco de dados
 			if (textField.getText().equals(dl.rs.getString("username"))
 					&& passwordField.getText().equals(dl.rs.getString("password"))) {
 				JOptionPane.showMessageDialog(null,
@@ -115,6 +124,7 @@ public class PainelLogin extends JPanel {
 			JOptionPane.showMessageDialog(PainelLogin.this,
 					"Usuário e/ou senha inválidos!");
 			limpar();
+			focus();
 
 		}
 	}
@@ -124,6 +134,13 @@ public class PainelLogin extends JPanel {
 		textField.setText("");
 		passwordField.setText("");
 	}
+	
+	private void focus() {
+		// TODO Auto-generated method stub
+		textField.grabFocus();
+	}
+	
+	
 
 	/*public PainelLogin(Runnable acaoOk) {
 		this();

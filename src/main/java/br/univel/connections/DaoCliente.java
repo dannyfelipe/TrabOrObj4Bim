@@ -33,7 +33,7 @@ public class DaoCliente {
 	/*
 	 * Método para inserir um novo cliente na base de dados
 	 */
-	public void insert(Cliente c) {
+	public int insert(Cliente c) {
 		try {
 			ps = con.prepareStatement("INSERT INTO CLIENTE (NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			ps.setString(1, c.getNome());
@@ -43,18 +43,21 @@ public class DaoCliente {
 			ps.setString(5, c.getEstado().name());
 			ps.setString(6, c.getEmail());
 			ps.setString(7, c.getGenero().name());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.");
+			
+			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
 	/*
 	 * Método para atualizar os dados do cliente na base de dados
 	 */
-	public void update(Cliente c) {
+	public int update(Cliente c) {
 		try {
 			ps = con.prepareStatement("UPDATE CLIENTE SET NOME = ?,"
 					+ " TELEFONE = ?, ENDERECO = ?, CIDADE = ?, ESTADO = ?,"
@@ -66,25 +69,31 @@ public class DaoCliente {
 			ps.setString(5, c.getEstado().name());
 			ps.setString(6, c.getEmail());
 			ps.setString(7, c.getGenero().name());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso.");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
 	/*
 	 * Método para excluir um cliente da base de dados
 	 */
-	public void delete(int id_c) {
+	public int delete(int id_c) {
 		try {
 			ps = con.prepareStatement("DELETE FROM CLIENTE WHERE ID_C =" + id_c);
 			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso.");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
@@ -110,7 +119,11 @@ public class DaoCliente {
 			}
 			rs.close();
 			st.close();
-			return c;
+			
+			if (c != null) {
+				return c;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -122,10 +135,12 @@ public class DaoCliente {
 	 */
 	public List<Cliente> listar() {
 		lista = new ArrayList<Cliente>();
+		
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT ID_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
 					+ "FROM CLIENTE");
+			
 			while (rs.next()) {
 				lista.add(c = new Cliente(
 						rs.getInt("ID_C"),
@@ -143,8 +158,10 @@ public class DaoCliente {
 			}
 			rs.close();
 			st.close();
-			if (lista != null)
+			
+			if (lista != null) {
 				return lista;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

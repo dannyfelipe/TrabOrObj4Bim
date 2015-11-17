@@ -31,25 +31,29 @@ public class DaoUsuario {
 	/*
 	 * Método para inserir um novo cliente na base de dados
 	 */
-	public void insert(Usuario u) {
+	public int insert(Usuario u) {
 		try {
 			ps = con.prepareStatement("INSERT INTO USUARIO (CLIENTE_ID, CLIENTE, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)");
 			ps.setInt(1, u.getCliente_id());
 			ps.setString(2, u.getCliente());
 			ps.setString(3, u.getUsername());
 			ps.setString(4, u.getPassword());
-			ps.executeUpdate();
+			
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
 	/*
 	 * Método para atualizar os dados do usuário na base de dados
 	 */
-	public void update(Usuario u) {
+	public int update(Usuario u) {
 		try {
 			ps = con.prepareStatement("UPDATE USUARIO SET CLIENTE_ID = ?, CLIENTE = ?, USERNAME = ?, PASSWORD =? " +
 										"WHERE ID_U" + u.getId_u());
@@ -57,25 +61,32 @@ public class DaoUsuario {
 			ps.setString(2, u.getCliente());
 			ps.setString(3, u.getUsername());
 			ps.setString(4, u.getPassword());
-			ps.executeUpdate();
+			
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
 	/*
 	 * Método para excluir um usuário da base de dados
 	 */
-	public void delete(int id_u) {
+	public int delete(int id_u) {
 		try {
 			ps = con.prepareStatement("DELETE FROM USUARIO WHERE ID_U = " + id_u);
 			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso.");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
@@ -87,6 +98,7 @@ public class DaoUsuario {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT CLIENTE_ID, CLIENTE, PASSWORD FROM USUARIO WHERE ID_U = " + id_u);
 			rs.next();
+			
 			if (rs.getString("USUARIO") != null) {
 				u = new Usuario();
 				u.setId_u(id_u);
@@ -98,6 +110,7 @@ public class DaoUsuario {
 				st.close();
 				return u;
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -109,9 +122,11 @@ public class DaoUsuario {
 	 */
 	public List<Usuario> listar() {
 		lista = new ArrayList<Usuario>();
+		
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT ID_U, CLIENTE_ID, CLIENTE, USERNAME, PASSWORD FROM USUARIO");
+			
 			while (rs.next()) {				
 				u = new Usuario();
 				u.setId_u(rs.getInt("ID_U"));
@@ -121,10 +136,14 @@ public class DaoUsuario {
 				u.setPassword(rs.getString("PASSWORD"));
 				lista.add(u);
 			}
+			
 			rs.close();
 			st.close();
-			if (lista != null)
+			
+			if (lista != null) {
 				return lista;
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
