@@ -115,7 +115,7 @@ public class DaoVenda {
 					+ "FROM VENDA WHERE ID_V = " + id_v);
 			rs.next();
 			
-			if (rs.getString("CLIENTE") != null) {
+			if (rs.getString("CLIENTE_ID") != null) {
 				v = new Venda(
 						rs.getInt("CLIENTE_ID"),
 						rs.getInt("PRODUTO_ID"),

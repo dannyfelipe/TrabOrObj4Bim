@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -24,6 +25,8 @@ import br.univel.Cliente;
 import br.univel.ClienteTable;
 import br.univel.Estado;
 import br.univel.Genero;
+import br.univel.busca.PainelBusca;
+import br.univel.busca.Pet;
 import br.univel.connections.DaoCliente;
 import br.univel.rels.RelCliente_estado;
 
@@ -36,8 +39,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class MioloCadastroCliente extends JPanel {
+public class MioloCadastroCliente extends JPanel { //extends JPanel
 
 	protected JTextField txtFc_id;
 	protected JTextField txtFc_nome;
@@ -253,35 +257,35 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_panel_1.gridy = 11;
 		add(panel_1, gbc_panel_1);
 
-		JButton btnNewButton = new JButton("Salvar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btn_salvar = new JButton("Salvar");
+		btn_salvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				btnAction_Add();
 				
 			}
 		});
-		panel_1.add(btnNewButton);
+		panel_1.add(btn_salvar);
 
-		JButton btnNewButton_1 = new JButton("Alterar");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btn_alterar = new JButton("Alterar");
+		btn_alterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				btnAction_Update();
 				
 			}
 		});
-		panel_1.add(btnNewButton_1);
+		panel_1.add(btn_alterar);
 
-		JButton btnNewButton_2 = new JButton("Excluir");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btn_excluir = new JButton("Excluir");
+		btn_excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				btnAction_delete();
 				
 			}
 		});
-		panel_1.add(btnNewButton_2);
+		panel_1.add(btn_excluir);
 
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -302,6 +306,12 @@ public class MioloCadastroCliente extends JPanel {
 		
 		uf();
 		gen();
+	}
+	
+	protected void preencher(Pet t) {
+		txtFc_id.setText(String.valueOf(t.getId()));;
+		txtFc_nome.setText(t.getNome());
+		txtFc_telefone.setText(t.getRaca());
 	}
 
 	/*

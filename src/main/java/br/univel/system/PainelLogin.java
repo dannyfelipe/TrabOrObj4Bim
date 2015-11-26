@@ -24,6 +24,8 @@ import br.univel.connections.DaoLogin;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 
 public class PainelLogin extends JPanel {
@@ -87,8 +89,38 @@ public class PainelLogin extends JPanel {
 		gbc_btnEntrar.gridx = 1;
 		gbc_btnEntrar.gridy = 2;
 		add(btnEntrar, gbc_btnEntrar);
+		
+		// final
+		configuraListeners();
 	}
 	
+	private void configuraListeners() {
+		// TODO Auto-generated method stub
+		
+		textField.addKeyListener(new KeyAdapter(){
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					textField.transferFocus();
+				}
+			}
+			
+		});
+		
+		passwordField.addKeyListener(new KeyAdapter(){
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					login(null);
+				}
+			}
+			
+		});
+		
+	}
+
 	/*
 	 * método para autenticação do usuário/cliente
 	 * realiza a conexão com o banco, verifica os inputs através do 'equals'
@@ -107,7 +139,7 @@ public class PainelLogin extends JPanel {
 			// query SQL
 			String sql = "SELECT USERNAME, PASSWORD " +
 						 "FROM USUARIO " +
-						 "WHERE USERNAME = '" + textField.getText() + "' AND PASSWORD = '" + passwordField.getText() + "'";
+						 "WHERE USERNAME = '" + textField.getText() + "' AND PASSWORD = '" + String.valueOf(passwordField.getPassword()) + "'";
 			// executa a query
 			dl.rs = dl.st.executeQuery(sql);
 
@@ -115,7 +147,7 @@ public class PainelLogin extends JPanel {
 			
 			// verifica se o usuário e senha são iguais aos cadastrados no banco de dados
 			if (textField.getText().equals(dl.rs.getString("username"))
-					&& passwordField.getText().equals(dl.rs.getString("password"))) {
+					&& String.valueOf(passwordField.getPassword()).equals(dl.rs.getString("password"))) {
 				JOptionPane.showMessageDialog(null,
 						"Acessando o sistema. Informações carregadas.");
 				acaoOk.run();

@@ -269,7 +269,7 @@ public class MioloCadastroUsuario extends JPanel {
 			limpar();
 			aux = -1;
 		} else {
-			JOptionPane.showMessageDialog(null, "Selecio um usuário!");
+			JOptionPane.showMessageDialog(null, "Selecione um usuário!");
 		}
 		
 	}
