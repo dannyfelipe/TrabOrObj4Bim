@@ -46,6 +46,14 @@ O software de 64 bits do SV é suportado apenas nos seguintes sistemas operaciona
 
     Windows Server 2012 (64 bits)**
 
+**Versão do JAVA:** Versão 8
+
+**Requisitos e considerações adicionais:** Algumas funcionalidades podem variar, com base na configuração do sistema. Alguns recursos podem exigir conectividade de hardware ou de servidor adicional ou avançada.
+
+
+**Observação**
+Os requisitos do sistema são arredondados para o 0,5 GB mais próximo, para ser conservador. Por exemplo, se medirmos o espaço em disco rígido exigido por um aplicativo como 1,99 GB, recomendamos 2,5 GB de espaço em disco. Nossos requisitos de sistema de disco rígido são intencionalmente maiores do que o uso real de espaço em disco do software.
+
 # Padrões de Projeto
 
 
