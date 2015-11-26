@@ -45,7 +45,9 @@ O software de 64 bits do SV é suportado apenas nos seguintes sistemas operaciona
 # Padrões de Projeto
 
 
-    Singleton: permite que tenha apenas uma instância de cada aba na aplicação.
+    Singleton: permite que se tenha apenas uma instância de cada aba na aplicação.
 
-    Decorator: este padrão é utilizado para criar a moldura das telas de cadastro e relatórios. Podendo posteriormente ser implantando novas funcionalidades, sem ter que seja adicionado em cada janela.
+    Decorator: utilizado para criar a moldura das telas de cadastro e relatórios.
+    Podendo posteriormente ser implantando novas funcionalidades, sem ter que seja
+    adicionado em cada janela.
 
