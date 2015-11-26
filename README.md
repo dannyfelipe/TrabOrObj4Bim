@@ -18,7 +18,7 @@ Requisitos do sistema
 - Sistema operacional
 O sistema de vendas é executado em versões de 32 bits e de 64 bits dos sistemas operacionais do Microsoft Windows. Quando você executa o SV de 32 bits em uma versão de 64 bits de um sistema operacional Windows, o programa é executado na camada de 32 bits do Windows. Para saber mais, consulte Versões de 64 bits do SV. Estes são os sistemas operacionais Windows suportados nos quais é possível executar programas de 32 bits e 64 bits do Office 2013.
 
-Os produtos de 32 bits do SV têm suporte nos seguintes sistemas operacionais do Windows:
+O software de 32 bits do SV têm suporte nos seguintes sistemas operacionais do Windows:
 
     Windows 7 (32 bits ou 64 bits)
 
@@ -30,7 +30,7 @@ Os produtos de 32 bits do SV têm suporte nos seguintes sistemas operacionais do 
 
     Windows Server 2012 (64 bits)**
 
-Os produtos de 64 bits do SV são suportados apenas nos seguintes sistemas operacionais do Windows:
+O software de 64 bits do SV é suportado apenas nos seguintes sistemas operacionais do Windows:
 
     Windows 7 (64 bits)
 
@@ -42,3 +42,4 @@ Os produtos de 64 bits do SV são suportados apenas nos seguintes sistemas operac
 
     Windows Server 2012 (64 bits)**
 
+# Padrões de Projeto
