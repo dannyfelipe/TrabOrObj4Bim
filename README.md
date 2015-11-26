@@ -10,9 +10,13 @@
 * Para a utilização do software o usuário deverá possuir em sua esteação de trabalho alguns requisitos mínimos.
 
 Requisitos do sistema
+
 **- Computador e processador:** Processador x86 ou x64 bits de 1 gigahertz (GHz) ou mais rápido com conjunto de instruções SSE2;
+
 **- Memória (RAM):** 1 gigabyte (GB) RAM (32 bits); 2 gigabytes (GB) RAM (64 bits);
+
 **- Disco rígido:** 3.0 gigabytes (GB) disponíveis;
+
 **- Monitor:** A aceleração de hardware gráfico exige uma placa gráfica DirectX10 e um monitor de resolução 1024 x 576 ou superior;
 
 **- Sistema operacional**
