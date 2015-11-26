@@ -43,3 +43,9 @@ O software de 64 bits do SV é suportado apenas nos seguintes sistemas operaciona
     Windows Server 2012 (64 bits)**
 
 # Padrões de Projeto
+
+
+    Singleton: permite que tenha apenas uma instância de cada aba na aplicação.
+
+    Decorator: este padrão é utilizado para criar a moldura das telas de cadastro e relatórios. Podendo posteriormente ser implantando novas funcionalidades, sem ter que seja adicionado em cada janela.
+
