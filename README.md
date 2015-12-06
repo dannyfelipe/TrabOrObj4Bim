@@ -2,11 +2,17 @@
 
 2º Ano, 4º Bimestre - 2015 | 
 [Univel](http://www.univel.br)
+Discente: Danny Felipe de Mello
+Docente: Fernando Dagostini
 
 # Sistema
-* O sistema de vendas, é um sistema genérico, podendo ser utilizado para qualquer finalidade de uma micro-empresa.
+* O sistema de vendas, é um sistema genérico, podendo ser utilizado para qualquer finalidade de uma micro-empresa. 
 
-# Configuração necessária
+Para acesso de usuário administrador deve se utilizar:
+
+Usuário: admin | Senha: admin
+
+## Configuração necessária
 * Para a utilização do software o usuário deverá possuir em sua estação de trabalho alguns requisitos mínimos.
 
 ## Requisitos
