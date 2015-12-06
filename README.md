@@ -9,7 +9,7 @@
 # Configuração necessária
 * Para a utilização do software o usuário deverá possuir em sua esteação de trabalho alguns requisitos mínimos.
 
-Requisitos do sistema
+###Requisitos do sistema Windows
 
 **- Computador e processador:** Processador x86 ou x64 bits de 1 gigahertz (GHz) ou mais rápido com conjunto de instruções SSE2;
 
@@ -63,3 +63,23 @@ Os requisitos do sistema são arredondados para o 0,5 GB mais próximo, para ser c
     Podendo posteriormente ser implantando novas funcionalidades, sem ter que seja
     adicionado em cada janela.
 
+
+
+Windows
+
+    Processador Intel Pentium ou AMD Athlon 64*
+    Microsoft Windows 7 com Service Pack 1, Windows 8 ou Windows 8.1
+    2 GB de RAM (recomenda-se 8 GB)
+    2 GB de espaço livre em disco, mais espaço livre necessário durante a instalação (não é possível instalar em dispositivos de armazenamento Flash removíveis).
+    Resolução de 1024 x 768
+    Compatível com DirectX 10 ou adaptador de vídeo mais recente
+    Requer conexão com a Internet e registro para a ativação obrigatória do software, a validação da associação e o acesso aos serviços online.†
+
+Mac OS
+
+    Processador Intel Multicore com suporte a 64 bits
+    Mac OS X Server v10.7, v10.8, v10.9 ou v10.10
+    2 GB de RAM (recomenda-se 8 GB)
+    2 GB de espaço disponível em disco; espaço livre adicional necessário durante a instalação (não é possível instalar em um volume que use um sistema de arquivos que faça distinção entre maiúsculas e minúsculas ou em dispositivos de armazenamento flash removíveis).
+    Resolução de 1024 x 768
+    Requer conexão com a Internet e registro para a ativação obrigatória do software, a validação da associação e o acesso aos serviços online.
